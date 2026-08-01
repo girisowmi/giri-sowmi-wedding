@@ -36,14 +36,30 @@ else
     --description "💍 Giri ♥ Sowmi — wedding website · 12 & 13 September 2026, Erode"
 fi
 
-# Enable GitHub Pages from the main branch root
-gh api -X POST "repos/$OWNER/$REPO/pages" \
-  -f "source[branch]=main" -f "source[path]=/" >/dev/null 2>&1 \
-  || echo "==> Pages already enabled (or enable it under Settings → Pages)"
+# Enable GitHub Pages from the main branch root. A JSON body is used because
+# the nested source object is awkward to express with -f key=value.
+if echo '{"source":{"branch":"main","path":"/"}}' \
+     | gh api -X POST "repos/$OWNER/$REPO/pages" --input - >/dev/null 2>&1; then
+  echo "==> GitHub Pages enabled"
+else
+  echo "==> Pages already enabled, or enable it under Settings → Pages → main / (root)"
+fi
 
 gh api -X PATCH "repos/$OWNER/$REPO" \
   -f homepage="https://$OWNER.github.io/$REPO/" >/dev/null 2>&1 || true
 
+URL="https://$OWNER.github.io/$REPO/"
 echo ""
-echo "🎉 Done! Your wedding site will be live in ~1 minute at:"
-echo "   https://$OWNER.github.io/$REPO/"
+echo "==> Waiting for the first Pages build..."
+for _ in $(seq 1 30); do
+  if [ "$(curl -s -o /dev/null -w '%{http_code}' "$URL")" = "200" ]; then
+    echo ""
+    echo "🎉 Live now: $URL"
+    exit 0
+  fi
+  sleep 10
+done
+
+echo ""
+echo "🎉 Pushed! The first Pages build can take a few minutes. It will appear at:"
+echo "   $URL"
