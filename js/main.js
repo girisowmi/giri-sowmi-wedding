@@ -89,7 +89,7 @@
     ];
   }
   if (!reduceMotion && holder) {
-    var count = window.innerWidth < 640 ? 8 : 13;
+    var count = window.innerWidth < 640 ? 12 : 20;
     for (var i = 0; i < count; i++) {
       var p = document.createElement('span');
       p.className = 'petal';
@@ -110,7 +110,7 @@
   var blooms = document.querySelector('.blooms');
   if (!reduceMotion && blooms) {
     var FLOWERS = bloomPalette();
-    var nb = window.innerWidth < 640 ? 7 : 12;
+    var nb = window.innerWidth < 640 ? 10 : 17;
     for (var b = 0; b < nb; b++) {
       var fc = FLOWERS[b % FLOWERS.length];
       var el = document.createElement('span');
@@ -127,6 +127,24 @@
       el.style.setProperty('--o', (0.3 + Math.random() * 0.35).toFixed(2));
       el.style.setProperty('--rot', (240 + Math.random() * 400) + 'deg');
       blooms.appendChild(el);
+    }
+  }
+
+  /* twinkling lights scattered over the page */
+  var sparkles = document.querySelector('.sparkles');
+  if (!reduceMotion && sparkles) {
+    var ns = window.innerWidth < 640 ? 14 : 26;
+    for (var k = 0; k < ns; k++) {
+      var sp = document.createElement('span');
+      sp.className = 'sparkle';
+      sp.style.left = (Math.random() * 100).toFixed(2) + 'vw';
+      sp.style.top  = (Math.random() * 100).toFixed(2) + 'vh';
+      var sz = 3 + Math.random() * 4;
+      sp.style.setProperty('--s', sz.toFixed(1) + 'px');
+      sp.style.setProperty('--gl', (sz * 1.6).toFixed(1) + 'px');
+      sp.style.setProperty('--t', (3 + Math.random() * 4).toFixed(1) + 's');
+      sp.style.setProperty('--delay', (-Math.random() * 7).toFixed(1) + 's');
+      sparkles.appendChild(sp);
     }
   }
 

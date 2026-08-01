@@ -82,6 +82,20 @@
       <stop offset=".5" stop-color="#A855F7"/>
       <stop offset="1" stop-color="#6D28D9"/>
     </linearGradient>
+    <symbol id="lightstring" viewBox="0 0 400 60">
+      <path d="M0 6 Q100 44 200 20 Q300 -2 400 24" fill="none" stroke="var(--muted)" stroke-width="1.3" opacity=".7"/>
+      <g class="lstr">
+        <g><line x1="34"  y1="17" x2="34"  y2="24" stroke="var(--muted)"/><circle class="halo" cx="34"  cy="28" r="7"/><circle class="b" cx="34"  cy="28" r="3.1"/></g>
+        <g><line x1="80"  y1="27" x2="80"  y2="34" stroke="var(--muted)"/><circle class="halo" cx="80"  cy="38" r="7"/><circle class="b" cx="80"  cy="38" r="3.1"/></g>
+        <g><line x1="126" y1="34" x2="126" y2="41" stroke="var(--muted)"/><circle class="halo" cx="126" cy="45" r="7"/><circle class="b" cx="126" cy="45" r="3.1"/></g>
+        <g><line x1="172" y1="34" x2="172" y2="41" stroke="var(--muted)"/><circle class="halo" cx="172" cy="45" r="7"/><circle class="b" cx="172" cy="45" r="3.1"/></g>
+        <g><line x1="218" y1="27" x2="218" y2="34" stroke="var(--muted)"/><circle class="halo" cx="218" cy="38" r="7"/><circle class="b" cx="218" cy="38" r="3.1"/></g>
+        <g><line x1="264" y1="17" x2="264" y2="24" stroke="var(--muted)"/><circle class="halo" cx="264" cy="28" r="7"/><circle class="b" cx="264" cy="28" r="3.1"/></g>
+        <g><line x1="310" y1="10" x2="310" y2="17" stroke="var(--muted)"/><circle class="halo" cx="310" cy="21" r="7"/><circle class="b" cx="310" cy="21" r="3.1"/></g>
+        <g><line x1="356" y1="13" x2="356" y2="20" stroke="var(--muted)"/><circle class="halo" cx="356" cy="24" r="7"/><circle class="b" cx="356" cy="24" r="3.1"/></g>
+      </g>
+    </symbol>
+
     <!-- a corner spray; flipped with CSS to serve all four corners -->
     <symbol id="corner-spray" viewBox="0 0 200 200">
       <g fill="none" stroke="var(--leaf)" stroke-width="2.2" opacity=".7">
@@ -208,11 +222,9 @@
 
 <div class="petals" aria-hidden="true"></div>
 <div class="blooms" aria-hidden="true"></div>
-<canvas class="crackers" id="crackers" aria-hidden="true"></canvas>
-
-<header class="hero">
-  <!-- flocks crossing the sky, above the wash but under the names -->
-  <div class="birds" aria-hidden="true">
+<div class="sparkles" aria-hidden="true"></div>
+<!-- flocks crossing the whole page, above the section washes -->
+<div class="birds" aria-hidden="true">
     <div class="flock flock1">
       <svg class="bird b1" viewBox="0 0 40 24"><path d="M2 14C8 4 14 4 20 12c6-8 12-8 18 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
       <svg class="bird b2" viewBox="0 0 40 24"><path d="M2 14C8 4 14 4 20 12c6-8 12-8 18 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
@@ -231,8 +243,23 @@
       <svg class="bird b2" viewBox="0 0 40 24"><path d="M2 14C8 4 14 4 20 12c6-8 12-8 18 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
       <svg class="bird b3" viewBox="0 0 40 24"><path d="M2 14C8 4 14 4 20 12c6-8 12-8 18 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
     </div>
-  </div>
+    <div class="flock flock4">
+      <svg class="bird b1" viewBox="0 0 40 24"><path d="M2 14C8 4 14 4 20 12c6-8 12-8 18 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <svg class="bird b2" viewBox="0 0 40 24"><path d="M2 14C8 4 14 4 20 12c6-8 12-8 18 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <svg class="bird b3" viewBox="0 0 40 24"><path d="M2 14C8 4 14 4 20 12c6-8 12-8 18 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <svg class="bird b4" viewBox="0 0 40 24"><path d="M2 14C8 4 14 4 20 12c6-8 12-8 18 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <svg class="bird b5" viewBox="0 0 40 24"><path d="M2 14C8 4 14 4 20 12c6-8 12-8 18 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+    </div>
+    <div class="flock flock5">
+      <svg class="bird b1" viewBox="0 0 40 24"><path d="M2 14C8 4 14 4 20 12c6-8 12-8 18 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <svg class="bird b2" viewBox="0 0 40 24"><path d="M2 14C8 4 14 4 20 12c6-8 12-8 18 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <svg class="bird b3" viewBox="0 0 40 24"><path d="M2 14C8 4 14 4 20 12c6-8 12-8 18 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <svg class="bird b4" viewBox="0 0 40 24"><path d="M2 14C8 4 14 4 20 12c6-8 12-8 18 2" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+    </div>
+</div>
+<canvas class="crackers" id="crackers" aria-hidden="true"></canvas>
 
+<header class="hero">
   <!-- string lights -->
   <svg class="lights" viewBox="0 0 900 84" aria-hidden="true" focusable="false">
     <path d="M-10 14 Q150 62 320 34 Q480 8 650 38 Q780 58 910 18" fill="none" stroke="var(--muted)" stroke-width="1.4" opacity=".75"/>
@@ -480,7 +507,10 @@
   <section class="blessings" id="blessings">
 
       <div class="flora" aria-hidden="true">
+        <svg class="lstring" viewBox="0 0 400 60" preserveAspectRatio="none"><use href="#lightstring"/></svg>
         <svg class="spray sp-tl" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
+        <svg class="spray sp-tr" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
+        <svg class="spray sp-bl" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
         <svg class="spray sp-br" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
         <svg class="vine vn-l" viewBox="0 0 90 420" preserveAspectRatio="xMidYMid slice"><use href="#edge-vine"/></svg>
       </div>
@@ -528,7 +558,10 @@
   <section class="events" id="events">
 
       <div class="flora" aria-hidden="true">
+        <svg class="lstring" viewBox="0 0 400 60" preserveAspectRatio="none"><use href="#lightstring"/></svg>
         <svg class="spray sp-tl" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
+        <svg class="spray sp-tr" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
+        <svg class="spray sp-bl" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
         <svg class="spray sp-br" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
         <svg class="vine vn-r" viewBox="0 0 90 420" preserveAspectRatio="xMidYMid slice"><use href="#edge-vine"/></svg>
       </div>
@@ -611,7 +644,10 @@
   <section class="download" id="invitation">
 
       <div class="flora" aria-hidden="true">
+        <svg class="lstring" viewBox="0 0 400 60" preserveAspectRatio="none"><use href="#lightstring"/></svg>
         <svg class="spray sp-tl" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
+        <svg class="spray sp-tr" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
+        <svg class="spray sp-bl" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
         <svg class="spray sp-br" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
         <svg class="vine vn-l" viewBox="0 0 90 420" preserveAspectRatio="xMidYMid slice"><use href="#edge-vine"/></svg>
       </div>
@@ -665,7 +701,10 @@
   <section class="music" id="music">
 
       <div class="flora" aria-hidden="true">
+        <svg class="lstring" viewBox="0 0 400 60" preserveAspectRatio="none"><use href="#lightstring"/></svg>
         <svg class="spray sp-tl" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
+        <svg class="spray sp-tr" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
+        <svg class="spray sp-bl" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
         <svg class="spray sp-br" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
         <svg class="vine vn-r" viewBox="0 0 90 420" preserveAspectRatio="xMidYMid slice"><use href="#edge-vine"/></svg>
       </div>
@@ -694,7 +733,10 @@
   <section class="contact" id="contact">
 
       <div class="flora" aria-hidden="true">
+        <svg class="lstring" viewBox="0 0 400 60" preserveAspectRatio="none"><use href="#lightstring"/></svg>
         <svg class="spray sp-tl" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
+        <svg class="spray sp-tr" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
+        <svg class="spray sp-bl" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
         <svg class="spray sp-br" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
         <svg class="vine vn-l" viewBox="0 0 90 420" preserveAspectRatio="xMidYMid slice"><use href="#edge-vine"/></svg>
       </div>
