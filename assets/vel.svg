@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 360" role="img" aria-label="The Vel, Lord Murugan's divine spear, with peacock feathers">
+  <defs>
+    <linearGradient id="blade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0"   stop-color="#D9A94E"/>
+      <stop offset=".42" stop-color="#F3DCA0"/>
+      <stop offset=".55" stop-color="#EBCA80"/>
+      <stop offset="1"   stop-color="#C08A3E"/>
+    </linearGradient>
+    <linearGradient id="shaft" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0"   stop-color="#A97529"/>
+      <stop offset=".38" stop-color="#E4C179"/>
+      <stop offset="1"   stop-color="#9E6B22"/>
+    </linearGradient>
+    <radialGradient id="eye">
+      <stop offset="0"   stop-color="#123C6B"/>
+      <stop offset=".55" stop-color="#1E5FA8"/>
+      <stop offset="1"   stop-color="#2F6E5B"/>
+    </radialGradient>
+  </defs>
+
+  <!-- peacock feathers fanning out from behind the shaft -->
+  <g transform="translate(120 250)">
+    <g transform="rotate(-46)">
+      <path d="M0 0 C-4 -50 -4 -96 0 -132" fill="none" stroke="#57856E" stroke-width="2"/>
+      <g opacity=".5" stroke="#6FA085" stroke-width="1.1" fill="none">
+        <path d="M0 -60 -13 -74M0 -74 -13 -88M0 -88 -12 -101M0 -60 13 -74M0 -74 13 -88M0 -88 12 -101"/>
+      </g>
+      <ellipse cy="-140" rx="15" ry="20" fill="#2F6E5B" opacity=".6"/>
+      <ellipse cy="-142" rx="10" ry="13.5" fill="url(#eye)"/>
+      <ellipse cy="-143" rx="5.4" ry="7.4" fill="#D9A94E"/>
+      <ellipse cy="-144" rx="2.3" ry="3.2" fill="#7A1F2B"/>
+    </g>
+    <g transform="rotate(46)">
+      <path d="M0 0 C4 -50 4 -96 0 -132" fill="none" stroke="#57856E" stroke-width="2"/>
+      <g opacity=".5" stroke="#6FA085" stroke-width="1.1" fill="none">
+        <path d="M0 -60 -13 -74M0 -74 -13 -88M0 -88 -12 -101M0 -60 13 -74M0 -74 13 -88M0 -88 12 -101"/>
+      </g>
+      <ellipse cy="-140" rx="15" ry="20" fill="#2F6E5B" opacity=".6"/>
+      <ellipse cy="-142" rx="10" ry="13.5" fill="url(#eye)"/>
+      <ellipse cy="-143" rx="5.4" ry="7.4" fill="#D9A94E"/>
+      <ellipse cy="-144" rx="2.3" ry="3.2" fill="#7A1F2B"/>
+    </g>
+    <g transform="rotate(-25)">
+      <path d="M0 0 C-3 -56 -3 -110 0 -152" fill="none" stroke="#57856E" stroke-width="1.8"/>
+      <g opacity=".45" stroke="#6FA085" stroke-width="1" fill="none">
+        <path d="M0 -74 -11 -87M0 -88 -11 -101M0 -102 -10 -114M0 -74 11 -87M0 -88 11 -101M0 -102 10 -114"/>
+      </g>
+      <ellipse cy="-160" rx="13" ry="17.5" fill="#2F6E5B" opacity=".55"/>
+      <ellipse cy="-162" rx="8.6" ry="11.6" fill="url(#eye)"/>
+      <ellipse cy="-163" rx="4.6" ry="6.3" fill="#D9A94E"/>
+      <ellipse cy="-164" rx="2" ry="2.8" fill="#7A1F2B"/>
+    </g>
+    <g transform="rotate(25)">
+      <path d="M0 0 C3 -56 3 -110 0 -152" fill="none" stroke="#57856E" stroke-width="1.8"/>
+      <g opacity=".45" stroke="#6FA085" stroke-width="1" fill="none">
+        <path d="M0 -74 -11 -87M0 -88 -11 -101M0 -102 -10 -114M0 -74 11 -87M0 -88 11 -101M0 -102 10 -114"/>
+      </g>
+      <ellipse cy="-160" rx="13" ry="17.5" fill="#2F6E5B" opacity=".55"/>
+      <ellipse cy="-162" rx="8.6" ry="11.6" fill="url(#eye)"/>
+      <ellipse cy="-163" rx="4.6" ry="6.3" fill="#D9A94E"/>
+      <ellipse cy="-164" rx="2" ry="2.8" fill="#7A1F2B"/>
+    </g>
+  </g>
+
+  <!-- shaft -->
+  <rect x="115" y="196" width="10" height="150" rx="4" fill="url(#shaft)" stroke="#8E641F" stroke-width="1.6"/>
+  <ellipse cx="120" cy="350" rx="8.5" ry="6" fill="#A97529" stroke="#8E641F" stroke-width="1.4"/>
+
+  <!-- collar binding where blade meets shaft -->
+  <path d="M107 186 H133 L129 197 H111 Z" fill="#D9A94E" stroke="#8E641F" stroke-width="1.5" stroke-linejoin="round"/>
+  <rect x="110" y="175" width="20" height="12" rx="3" fill="#EBCA80" stroke="#8E641F" stroke-width="1.5"/>
+
+  <!-- the Vel: leaf-shaped blade with a sharp tip -->
+  <path d="M120 12
+           C132 54 148 92 148 122
+           C148 150 136 170 120 180
+           C104 170 92 150 92 122
+           C92 92 108 54 120 12 Z"
+        fill="url(#blade)" stroke="#A97529" stroke-width="2.4" stroke-linejoin="round"/>
+  <path d="M120 30
+           C129 64 140 96 140 121
+           C140 143 131 159 120 168
+           C109 159 100 143 100 121
+           C100 96 111 64 120 30 Z"
+        fill="none" stroke="#C9A05A" stroke-width="1.1" opacity=".85"/>
+  <line x1="120" y1="20" x2="120" y2="176" stroke="#A97529" stroke-width="1.8"/>
+  <path d="M120 60 108 84M120 60 132 84M120 96 106 120M120 96 134 120M120 132 110 152M120 132 130 152"
+        fill="none" stroke="#C9A05A" stroke-width=".9" opacity=".55"/>
+</svg>

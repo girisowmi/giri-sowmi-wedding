@@ -56,6 +56,26 @@ sup { font-size: .58em; }
 /* keep real content above the drifting petals */
 header, main, footer { position: relative; z-index: 2; }
 
+/* ————— wedding-day crackers ————— */
+.crackers {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 6;
+  /* held well below full strength: at 1.0 the additive blend blows out the
+     cream background and the invitation text underneath becomes unreadable */
+  opacity: .58;
+}
+/* the sky darkens a touch on the day so the crackers actually read */
+.is-wedding-day .hero {
+  background:
+    radial-gradient(52vw 40vh at 0% 0%,   rgba(242, 213, 220, .35), transparent 65%),
+    radial-gradient(52vw 40vh at 100% 0%, rgba(169, 191, 166, .28), transparent 65%),
+    linear-gradient(#F3EBDD, var(--bg) 60%);
+}
+
 /* ————— falling petals ————— */
 .petals {
   position: fixed; inset: 0;
@@ -127,9 +147,12 @@ header, main, footer { position: relative; z-index: 2; }
 
 .om {
   font-family: var(--tamil);
-  font-size: 2rem;
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .34em;
+  text-indent: .34em;
   color: var(--gold);
-  line-height: 1;
+  line-height: 1.6;
 }
 .motto {
   font-family: var(--tamil);
@@ -265,6 +288,66 @@ header, main, footer { position: relative; z-index: 2; }
 /* ————— sections ————— */
 section { padding: 4.2rem 0; }
 
+/* ————— Lord Murugan ————— */
+.murugan {
+  background:
+    radial-gradient(60% 70% at 50% 0%, rgba(201, 167, 95, .12), transparent 70%),
+    radial-gradient(50% 60% at 50% 100%, rgba(47, 110, 91, .09), transparent 70%);
+}
+.murugan .vel {
+  width: clamp(88px, 15vw, 122px);
+  height: auto;
+  filter: drop-shadow(0 10px 22px rgba(120, 90, 30, .18));
+}
+.chant {
+  font-family: var(--tamil);
+  font-size: clamp(1.3rem, 3.6vw, 1.85rem);
+  font-weight: 600;
+  color: var(--green-900);
+  margin-top: 1.6rem;
+  letter-spacing: .04em;
+}
+.chant .dot { color: var(--gold); padding: 0 .35em; }
+.arohara {
+  font-family: var(--tamil);
+  font-size: clamp(.92rem, 2.3vw, 1.05rem);
+  color: var(--gold);
+  letter-spacing: .18em;
+  margin-top: .6rem;
+}
+.murugan-note {
+  max-width: 43ch;
+  margin: 1.6rem auto 0;
+  font-style: italic;
+  font-size: clamp(1.02rem, 2.4vw, 1.15rem);
+  line-height: 1.8;
+}
+.murugan-note b { font-style: normal; font-weight: 700; color: var(--green-900); }
+
+/* ————— formal invitation download ————— */
+.download { background: linear-gradient(var(--bg), #F7F1E4); }
+.download .dl-note {
+  font-family: var(--tamil);
+  font-size: clamp(1.15rem, 3vw, 1.4rem);
+  font-weight: 600;
+  color: var(--green-900);
+  margin-top: -1.1rem;
+}
+.download .dl-sub {
+  max-width: 46ch;
+  margin: 1rem auto 1.8rem;
+  font-style: italic;
+  line-height: 1.75;
+}
+.btn.dl { font-size: .84rem; padding: .95rem 1.7rem; }
+.download .dl-meta {
+  margin-top: .9rem;
+  font-size: .8rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #8D8468;
+}
+
 .script-h {
   font-family: var(--script);
   font-weight: 400;
@@ -379,6 +462,14 @@ section { padding: 4.2rem 0; }
   line-height: 1.45;
 }
 .ev-area { font-style: italic; color: var(--green-500); margin-top: .2rem; }
+.ev-extra {
+  margin-top: .45rem;
+  font-size: .86rem;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--green-500);
+}
+.ev-extra span { font-family: var(--tamil); font-style: normal; font-size: .82rem; color: var(--gold); }
 
 .dots {
   width: 130px;

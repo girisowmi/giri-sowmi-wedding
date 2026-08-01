@@ -52,6 +52,7 @@
 <body>
 
 <div class="petals" aria-hidden="true"></div>
+<canvas class="crackers" id="crackers" aria-hidden="true"></canvas>
 
 <header class="hero">
   <!-- string lights -->
@@ -199,7 +200,7 @@
   </svg>
 
   <div class="hero-inner">
-    <p class="om fx" lang="ta" aria-hidden="true">ௐ</p>
+    <p class="om fx" lang="ta">ஓம் சரவணபவ</p>
     <p class="motto fx" lang="ta">அறம் <span class="dot">•</span> பொருள் <span class="dot">•</span> இன்பம்</p>
     <svg class="leafdiv fx" viewBox="0 0 220 26" aria-hidden="true" focusable="false">
       <line x1="6" y1="13" x2="70" y2="13" stroke="#C9A75F" stroke-width="1"/>
@@ -254,6 +255,28 @@
 </header>
 
 <main>
+  <section class="murugan" id="murugan">
+    <div class="wrap">
+      <img class="vel reveal" src="./assets/vel.svg" width="240" height="360"
+           alt="The Vel — Lord Murugan's divine spear, flanked by peacock feathers">
+      <p class="chant reveal" lang="ta">வெற்றி வேல் <span class="dot">•</span> வீர வேல்</p>
+      <p class="arohara reveal" lang="ta">வேலும் மயிலும் துணை</p>
+      <p class="murugan-note reveal">
+        With Lord Murugan's blessings, we take our vows at
+        <b>Shri Arulmigu Velayuthaswamy Temple</b>, Thindal —
+        the shrine of the Lord who bears the <i>Vel</i>.
+      </p>
+    </div>
+  </section>
+
+  <div class="sep" aria-hidden="true">
+    <span class="line"></span>
+    <svg viewBox="0 0 24 22" width="18" height="17" focusable="false">
+      <path d="M12 20 C6 15 2 11.5 2 7.5 C2 4.4 4.4 2 7.2 2 C9.2 2 11 3.2 12 5 C13 3.2 14.8 2 16.8 2 C19.6 2 22 4.4 22 7.5 C22 11.5 18 15 12 20 Z" fill="none" stroke="#C9A75F" stroke-width="1.6"/>
+    </svg>
+    <span class="line"></span>
+  </div>
+
   <section class="blessings" id="blessings">
     <div class="wrap">
       <h2 class="script-h reveal">With the blessings of</h2>
@@ -310,6 +333,7 @@
             <path d="M12 7.5V12l3.5 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <p class="ev-time">6.00 PM – 9.00 PM</p>
+          <p class="ev-extra">Mugurthakkal · 6.00 – 7.00 PM<br><span lang="ta">முகூர்த்தக்கால்</span></p>
           <div class="dots"></div>
           <svg class="ev-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M12 21C12 21 5.5 14.8 5.5 10a6.5 6.5 0 1 1 13 0C18.5 14.8 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
@@ -340,6 +364,7 @@
             <path d="M12 7.5V12l3.5 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
           <p class="ev-time">9.00 AM – 10.00 AM</p>
+          <p class="ev-extra">Lunch · 12.00 – 1.30 PM<br><span lang="ta">மதிய விருந்து</span></p>
           <div class="dots"></div>
           <svg class="ev-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M12 21C12 21 5.5 14.8 5.5 10a6.5 6.5 0 1 1 13 0C18.5 14.8 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
@@ -357,6 +382,33 @@
         </article>
 
       </div>
+    </div>
+  </section>
+
+  <div class="sep" aria-hidden="true">
+    <span class="line"></span>
+    <svg viewBox="0 0 24 22" width="18" height="17" focusable="false">
+      <path d="M12 20 C6 15 2 11.5 2 7.5 C2 4.4 4.4 2 7.2 2 C9.2 2 11 3.2 12 5 C13 3.2 14.8 2 16.8 2 C19.6 2 22 4.4 22 7.5 C22 11.5 18 15 12 20 Z" fill="none" stroke="#C9A75F" stroke-width="1.6"/>
+    </svg>
+    <span class="line"></span>
+  </div>
+
+  <section class="download" id="invitation">
+    <div class="wrap">
+      <h2 class="script-h reveal">The formal invitation</h2>
+      <p class="dl-note reveal" lang="ta">திருமண அழைப்பிதழ்</p>
+      <p class="dl-sub reveal">
+        Our full invitation — the Tamil <i>azhaippithal</i>, the schedule for both
+        days, our families, and the meaning behind each ritual.
+      </p>
+      <a class="btn solid dl" href="./GiriSowmi.pdf" download="GiriSowmi.pdf">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">
+          <path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4 17v2.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V17" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/>
+        </svg>
+        Download invitation (PDF)
+      </a>
+      <p class="dl-meta reveal">6 pages · Tamil &amp; English · A4</p>
     </div>
   </section>
 </main>
@@ -388,5 +440,6 @@
 </footer>
 
 <script src="./js/main.js" defer></script>
+<script src="./js/crackers.js" defer></script>
 </body>
 </html>
