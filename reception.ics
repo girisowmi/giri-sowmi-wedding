@@ -1,0 +1,23 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Giri and Sowmi Wedding//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:reception-20260912@giri-sowmi-wedding
+DTSTAMP:20260801T000000Z
+DTSTART:20260912T123000Z
+DTEND:20260912T153000Z
+SUMMARY:Giri ♥ Sowmi — Wedding Reception
+DESCRIPTION:No formalities\, just good vibes! Come eat\, laugh\, dance and 
+ bless us as we start our forever.
+LOCATION:Brindhavan Mahal\, Palayapalayam\, Erode\, Tamil Nadu
+STATUS:CONFIRMED
+TRANSP:OPAQUE
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Giri ♥ Sowmi — Reception today!
+TRIGGER:-PT3H
+END:VALARM
+END:VEVENT
+END:VCALENDAR

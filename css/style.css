@@ -1,0 +1,510 @@
+/* ————————————————————————————————
+   Giri ♥ Sowmi — wedding site styles
+   Palette drawn from the printed invitation:
+   cream paper, deep green, antique gold, blush florals, sage leaves
+———————————————————————————————— */
+
+:root {
+  --bg:        #FBF7EF;
+  --panel:     #FFFDF8;
+  --green-900: #22402F;
+  --green-700: #2E4A38;
+  --green-500: #52705B;
+  --body:      #44584C;
+  --gold:      #B7924E;
+  --gold-2:    #C9A75F;
+  --gold-soft: #E3CE9C;
+  --blush:     #F2D5DC;
+  --blush-2:   #E6BEC9;
+  --sage:      #A9BFA6;
+
+  --script: 'Great Vibes', cursive;
+  --serif:  'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --tamil:  'Noto Serif Tamil', 'Cormorant Garamond', serif;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--body);
+  background: var(--bg);
+  text-align: center;
+  overflow-x: hidden;
+}
+
+::selection { background: #EBDDB8; color: var(--green-900); }
+
+a:focus-visible, .btn:focus-visible {
+  outline: 2px dashed var(--gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.emoji { font-style: normal; }
+sup { font-size: .58em; }
+
+.wrap { max-width: 1020px; margin: 0 auto; padding: 0 22px; }
+
+/* keep real content above the drifting petals */
+header, main, footer { position: relative; z-index: 2; }
+
+/* ————— falling petals ————— */
+.petals {
+  position: fixed; inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+.petal {
+  position: absolute; top: 0; left: 0;
+  width: var(--s, 16px); height: var(--s, 16px);
+  opacity: var(--o, .7);
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path d='M12 2C17 7 18.5 13.5 12 22C5.5 13.5 7 7 12 2Z' fill='%23EFC9D1' fill-opacity='0.9'/></svg>") center/contain no-repeat;
+  animation: fall var(--t, 18s) linear var(--delay, 0s) infinite;
+}
+@keyframes fall {
+  from { transform: translate3d(var(--x0, 10vw), -6vh, 0) rotate(0deg); }
+  to   { transform: translate3d(var(--x1, 14vw), 108vh, 0) rotate(var(--rot, 300deg)); }
+}
+
+/* ————— hero ————— */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding: clamp(74px, 11vh, 118px) 20px 46px;
+  overflow: hidden;
+  background:
+    radial-gradient(52vw 40vh at 0% 0%,   rgba(242, 213, 220, .35), transparent 65%),
+    radial-gradient(52vw 40vh at 100% 0%, rgba(169, 191, 166, .28), transparent 65%),
+    var(--bg);
+}
+.hero-inner { position: relative; z-index: 3; max-width: 900px; }
+
+.corner {
+  position: absolute; top: -6px;
+  width: min(300px, 40vw);
+  pointer-events: none;
+  opacity: .95;
+  z-index: 1;
+}
+.corner.tl { left: -8px; }
+.corner.tr { right: -8px; transform: scaleX(-1); }
+
+.lights {
+  position: absolute; top: 6px; left: 50%;
+  transform: translateX(-50%);
+  width: min(980px, 130vw);
+  opacity: .9;
+  pointer-events: none;
+  z-index: 2;
+}
+.bulbs line { stroke-width: 1; opacity: .7; }
+.bulbs .halo { fill: #FFDF9E; opacity: .3; }
+.bulbs .b { fill: #FFE9B8; stroke: #C9A75F; stroke-width: .8; }
+.bulbs g:nth-child(odd) .b  { animation: twinkle 3.2s ease-in-out infinite alternate; }
+.bulbs g:nth-child(even) .b { animation: twinkle 4.1s ease-in-out -1.6s infinite alternate; }
+@keyframes twinkle { from { opacity: .55; } to { opacity: 1; } }
+
+.lanterns {
+  position: absolute; top: 0; right: clamp(4px, 4vw, 60px);
+  width: min(150px, 21vw);
+  pointer-events: none;
+  z-index: 2;
+}
+.lan { transform-origin: 45px 0; animation: sway 7s ease-in-out infinite alternate; }
+.lan2 { animation-duration: 9s; animation-delay: -2.5s; }
+@keyframes sway { from { transform: rotate(1.7deg); } to { transform: rotate(-1.7deg); } }
+
+.om {
+  font-family: var(--tamil);
+  font-size: 2rem;
+  color: var(--gold);
+  line-height: 1;
+}
+.motto {
+  font-family: var(--tamil);
+  font-size: clamp(1.02rem, 2.6vw, 1.24rem);
+  letter-spacing: .12em;
+  color: var(--green-700);
+  margin-top: .7rem;
+}
+.motto .dot { color: var(--gold-2); }
+
+.leafdiv { width: 215px; margin: .7rem auto 0; display: block; }
+
+.tease {
+  font-style: italic;
+  font-size: clamp(1.12rem, 2.8vw, 1.32rem);
+  color: var(--green-500);
+  margin-top: 1.15rem;
+}
+
+.names {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: .1em clamp(.6rem, 2.5vw, 1.4rem);
+  margin-top: .8rem;
+  font-family: var(--script);
+  font-weight: 400;
+  color: var(--green-900);
+}
+.names .name {
+  font-size: clamp(3.6rem, 11.4vw, 7rem);
+  line-height: 1.02;
+  padding: 0 .06em .12em; /* keep script descenders/flourishes unclipped */
+}
+.flourish { width: clamp(130px, 22vw, 240px); flex: 0 1 auto; }
+
+.announce {
+  font-size: .8rem;
+  letter-spacing: .42em;
+  text-indent: .42em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: .5rem 0 .85rem;
+}
+
+.datepill {
+  display: inline-block;
+  border: 1px solid var(--gold-soft);
+  border-radius: 999px;
+  padding: .62rem 1.5rem;
+  background: rgba(255, 253, 248, .72);
+  color: var(--green-700);
+  font-size: .84rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+/* countdown */
+.countdown { margin-top: 1.8rem; }
+.cd-label {
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--green-500);
+  margin-bottom: .75rem;
+}
+.cd-grid {
+  display: flex;
+  justify-content: center;
+  gap: clamp(8px, 2vw, 16px);
+}
+.tile {
+  min-width: clamp(66px, 17vw, 86px);
+  padding: .7rem .5rem .6rem;
+  background: var(--panel);
+  border: 1px solid #EADFC6;
+  border-radius: 12px;
+  box-shadow: 0 8px 22px rgba(90, 70, 30, .07);
+}
+.tile .num {
+  display: block;
+  font-size: clamp(1.7rem, 5vw, 2.2rem);
+  font-weight: 600;
+  color: var(--green-900);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+}
+.tile .lab {
+  display: block;
+  margin-top: .15rem;
+  font-size: .66rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-indent: .22em;
+  text-transform: uppercase;
+  color: #8B7A4F;
+}
+.cd-done {
+  font-family: var(--script);
+  font-size: 2rem;
+  color: var(--green-700);
+}
+
+.scrollhint {
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: var(--gold);
+  animation: bob 2.2s ease-in-out infinite;
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(7px); }
+}
+
+/* hero entrance — keep the whole stagger short; a guest opening the link
+   should not be looking at an empty page while it plays */
+.fx { animation: rise .55s ease both; }
+.fx:nth-child(1) { animation-delay: .04s; }
+.fx:nth-child(2) { animation-delay: .09s; }
+.fx:nth-child(3) { animation-delay: .13s; }
+.fx:nth-child(4) { animation-delay: .18s; }
+.fx:nth-child(5) { animation-delay: .24s; }
+.fx:nth-child(6) { animation-delay: .3s; }
+.fx:nth-child(7) { animation-delay: .35s; }
+.fx:nth-child(8) { animation-delay: .41s; }
+.fx:nth-child(9) { animation-delay: .48s; }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* ————— sections ————— */
+section { padding: 4.2rem 0; }
+
+.script-h {
+  font-family: var(--script);
+  font-weight: 400;
+  font-size: clamp(2.1rem, 5.4vw, 2.7rem);
+  color: var(--gold);
+  margin-bottom: 2rem;
+}
+.script-h.small { font-size: clamp(1.7rem, 4.5vw, 2rem); margin-bottom: .4rem; }
+
+.parents {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.4rem, 5vw, 3.4rem);
+}
+.pgroup {
+  font-size: clamp(1.15rem, 2.7vw, 1.42rem);
+  font-weight: 500;
+  color: var(--green-900);
+  line-height: 1.55;
+}
+.wheat { height: 86px; flex: 0 0 auto; }
+
+.invite-note { margin-top: 3rem; }
+.script-line {
+  font-family: var(--script);
+  font-size: clamp(1.9rem, 5.2vw, 2.7rem);
+  color: var(--green-700);
+  line-height: 1.3;
+}
+.serif-line {
+  font-style: italic;
+  font-size: clamp(1.14rem, 2.7vw, 1.38rem);
+  line-height: 1.75;
+  margin-top: .9rem;
+}
+
+/* divider between sections */
+.sep {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+}
+.sep .line {
+  width: min(170px, 30vw);
+  height: 1px;
+  background: linear-gradient(to right, transparent, #D8BC82, transparent);
+}
+
+/* ————— event cards ————— */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: center;
+  gap: clamp(1.4rem, 4vw, 2.4rem);
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  width: min(410px, 100%);
+  background: var(--panel);
+  border: 1px solid #EADFC6;
+  border-radius: 18px;
+  padding: 2.3rem 1.8rem 1.8rem;
+  box-shadow: 0 12px 34px rgba(90, 70, 30, .08);
+}
+/* pin each card's call-to-action block to the bottom so both cards line up
+   even though one venue name wraps to two lines */
+.card .btns { margin-top: auto; }
+.card-title {
+  font-family: var(--script);
+  font-weight: 400;
+  font-size: 2.5rem;
+  color: var(--green-700);
+  margin-bottom: 1.1rem;
+  line-height: 1.1;
+}
+.ev-ic {
+  display: block;
+  width: 24px; height: 24px;
+  margin: 0 auto .4rem;
+  color: var(--green-700);
+}
+.ev-day {
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .34em;
+  text-indent: .34em;
+  text-transform: uppercase;
+  color: var(--green-500);
+}
+.ev-date {
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  color: var(--green-900);
+}
+.ev-time {
+  font-size: 1.18rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: var(--green-900);
+}
+.ev-venue {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--green-900);
+  line-height: 1.45;
+}
+.ev-area { font-style: italic; color: var(--green-500); margin-top: .2rem; }
+
+.dots {
+  width: 130px;
+  margin: 1.05rem auto;
+  border-top: 2px dotted var(--gold-soft);
+}
+
+.btns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .7rem;
+  padding-top: 1.5rem;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .74rem 1.3rem;
+  border-radius: 999px;
+  font-family: var(--serif);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn.solid {
+  background: var(--green-700);
+  color: #FDF9EF;
+  border: 1px solid var(--green-700);
+}
+.btn.solid:hover { background: var(--green-900); box-shadow: 0 8px 20px rgba(34, 64, 47, .25); }
+.btn.ghost {
+  background: transparent;
+  color: var(--green-700);
+  border: 1px solid var(--gold-2);
+}
+.btn.ghost:hover { background: rgba(201, 167, 95, .12); }
+
+.ics {
+  display: inline-block;
+  margin-top: .95rem;
+  font-size: .82rem;
+  letter-spacing: .04em;
+  color: var(--gold);
+  text-decoration: underline dotted;
+  text-underline-offset: 3px;
+}
+.ics:hover { color: var(--green-700); }
+
+/* reveal on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.in { opacity: 1; transform: none; }
+.cards .card:nth-child(2) { transition-delay: .12s; }
+
+/* ————— footer ————— */
+.foot {
+  margin-top: 2.5rem;
+  padding: 0 1.2rem 2.6rem;
+  background: linear-gradient(var(--bg), #F5EDDC);
+}
+.garland {
+  width: min(820px, 100%);
+  margin: 0 auto 2.2rem;
+  display: block;
+}
+.compliments {
+  font-size: 1.06rem;
+  font-weight: 600;
+  letter-spacing: .3em;
+  text-indent: .3em;
+  text-transform: uppercase;
+  color: var(--green-900);
+}
+.sig {
+  font-family: var(--script);
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  color: var(--green-900);
+  margin: 1.4rem 0 .3rem;
+}
+.sig .hearts { font-size: .62em; vertical-align: .18em; }
+.btn.wa { margin-top: 1.1rem; }
+.fineprint {
+  margin-top: 1.7rem;
+  font-size: .8rem;
+  letter-spacing: .14em;
+  color: #8D8468;
+}
+
+/* ————— responsive ————— */
+@media (max-width: 640px) {
+  /* stack as Giri / flourish / Sowmi rather than letting the flourish
+     orphan one of the names onto its own line */
+  .names { flex-direction: column; gap: 0; }
+  .names .name { font-size: clamp(3.6rem, 17vw, 5rem); }
+  .flourish { width: min(200px, 56vw); margin: -.35rem 0; }
+
+  /* stacked families read better with a horizontal rule than with the
+     wheat sprig turned on its side, which looks like an arrow */
+  .parents { flex-direction: column; gap: 1.1rem; }
+  .wheat { display: none; }
+  .parents::before {
+    content: '';
+    order: 1;
+    width: 90px;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #D8BC82, transparent);
+  }
+  .parents .pgroup:last-of-type { order: 2; }
+  .lanterns { width: 92px; right: 0; }
+  .lan2 { display: none; }
+  .corner { width: 46vw; opacity: .8; }
+  .tile { min-width: 72px; }
+  section { padding: 3.4rem 0; }
+}
+
+/* ————— reduced motion ————— */
+@media (prefers-reduced-motion: reduce) {
+  .fx, .scrollhint, .lan, .bulbs .b, .petal { animation: none !important; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .petals { display: none; }
+}
