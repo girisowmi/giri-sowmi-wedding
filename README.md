@@ -2,7 +2,7 @@
 
 A single-page wedding invitation site, styled after the printed invite — cream & deep
 green with antique-gold accents, blush florals, hanging lanterns, string lights and
-falling petals, with Lord Murugan's *Vel* at its heart.
+falling petals, a marigold *toran*, and Bala Murugan at its heart.
 
 **Events**
 
@@ -16,10 +16,12 @@ falling petals, with Lord Murugan's *Vel* at its heart.
 ## Features
 
 - Live countdown (celebrations → muhurtham → "Happily married!")
-- **Lord Murugan** section — the Vel with peacock feathers, *வெற்றி வேல் • வீர வேல்*
+- **Lord Murugan** section — Bala Murugan with the Vel, *வெற்றி வேல் • வீர வேல்*
 - **Wedding-day crackers** 🎆 — a fireworks canvas that switches itself on for
   12–13 September 2026 (IST) and stays dormant every other day
-- **Download the formal invitation** as `GiriSowmi.pdf` (6 pages, Tamil & English)
+- **View and download both invitations** — the formal card opens in a swipeable
+  5-page lightbox; both are downloadable
+- **Spotify playlist** embed for the songs of the day
 - Per-event **Get directions** (Google Maps) and **Add to calendar**
   (Google Calendar + downloadable `.ics` for Apple/Outlook)
 - **Share on WhatsApp** button with a pre-filled invite message
@@ -37,21 +39,42 @@ Then open <http://localhost:4173>.
 To see the crackers on any day, add `?crackers=1` to the URL
 (`?crackers=0` forces them off).
 
-## The PDF invitation
+## The invitations
 
-`GiriSowmi.pdf` is generated from `invitation/invitation.html`:
+Both of the couple's own files are served straight from the repo:
+
+| File | Used for |
+|---|---|
+| `GiriSowmiWeddingInvitation.pdf` | the formal card — download button |
+| `GiriSowmi-Wedding.png` | the save-the-date card — download button |
+| `assets/invite/page-1…5.jpg` | web-sized pages for the in-page viewer |
+| `assets/invite/casual.jpg` | web-sized save-the-date for the viewer |
+
+The viewer images are compressed copies so the page stays fast; the download
+buttons always hand over the full-quality originals. If you replace either
+original, regenerate the viewer copies:
 
 ```bash
-./make-pdf.sh
+pdfimages -j GiriSowmiWeddingInvitation.pdf /tmp/pg && python3 -c "
+from PIL import Image
+for i in range(5):
+    im = Image.open(f'/tmp/pg-{i:03d}.jpg').convert('RGB')
+    im.save(f'assets/invite/page-{i+1}.jpg','JPEG',quality=84,optimize=True,progressive=True)"
 ```
 
-Six A4-landscape pages — cover, English invitation, the Tamil *azhaippithal*,
-the event schedule with venue QR codes, the family lists, and the ritual
-explanations. Edit the HTML and re-run the script to regenerate.
+## The playlist
 
-> **Proofread before sharing.** The Tamil pages were transcribed from photographs
-> of the printed card, so names and honorifics should be checked against the
-> original — especially the family list on page 5.
+Open your playlist in Spotify → **Share → Copy link**, then paste it into
+`SPOTIFY_LINK` at the top of `js/invitation.js`:
+
+```js
+var SPOTIFY_LINK = 'https://open.spotify.com/playlist/xxxxxxxxxxxxxxxxxxxxxx';
+```
+
+Albums, single tracks and artists work too. Until it is set, the section shows
+a placeholder. Note that Spotify's embed plays **full songs only for listeners
+signed in to Spotify** — everyone else hears a 30-second preview of each track.
+That is Spotify's rule for embeds and cannot be worked around.
 
 ## Deploy to GitHub Pages
 
