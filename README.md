@@ -1,8 +1,8 @@
 # 💍 Giri ♥ Sowmi — Wedding Website
 
-A single-page wedding invitation site, styled after the printed invite — cream & deep
-green with antique-gold accents, blush florals, hanging lanterns, string lights and
-falling petals, a marigold *toran*, and Bala Murugan at its heart.
+A single-page wedding invitation site in purple and blue, after the couple's own
+💙💜 monogram — lavender paper, deep indigo ink, coconut palms, drifting blooms,
+flocks of birds and a violet *toran*.
 
 **Events**
 
@@ -16,12 +16,12 @@ falling petals, a marigold *toran*, and Bala Murugan at its heart.
 ## Features
 
 - Live countdown (celebrations → muhurtham → "Happily married!")
-- **Lord Murugan** section — Bala Murugan with the Vel, *வெற்றி வேல் • வீர வேல்*
 - **Wedding-day crackers** 🎆 — a fireworks canvas that switches itself on for
   12–13 September 2026 (IST) and stays dormant every other day
 - **View and download both invitations** — the formal card opens in a swipeable
   5-page lightbox; both are downloadable
-- **Spotify playlist** embed for the songs of the day
+- **Spotify playlist** (♾️💙💜) — every track listed, click any one to play
+- Animated scenery: swaying coconut palms, flocks of birds, drifting blooms and petals
 - Per-event **Get directions** (Google Maps) and **Add to calendar**
   (Google Calendar + downloadable `.ics` for Apple/Outlook)
 - **Share on WhatsApp** button with a pre-filled invite message
@@ -104,7 +104,9 @@ enables GitHub Pages, and prints the live URL
 - **Colors & fonts:** CSS variables at the top of `css/style.css`
 - **Countdown target times:** top of `js/main.js`
 - **Crackers dates, colours, density:** top of `js/crackers.js`
-- **The Vel artwork:** `assets/vel.svg` (shared by the site and the PDF cover)
+- **Scenery:** `assets/palm.svg` (fronds animate from a `<style>` inside the SVG,
+  since it is used via `<img>`), `assets/toran.svg`; birds and blooms are in
+  `index.html` / `js/main.js`
 - **Venue QR codes:** `assets/qr-*.svg` — regenerate with `segno`
 - **Share-preview image:** regenerate from `assets/og.html` (1200×630) with any
   Chromium browser:

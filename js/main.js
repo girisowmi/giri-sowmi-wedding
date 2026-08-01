@@ -77,6 +77,43 @@
     }
   }
 
+  /* drifting blooms — larger and slower than the petals, five-petalled */
+  var blooms = document.querySelector('.blooms');
+  if (!reduceMotion && blooms) {
+    var FLOWERS = [
+      ['%23C4B5FD', '%237C3AED'],   // violet
+      ['%2393C5FD', '%232563EB'],   // cornflower
+      ['%23DDD6FE', '%236366F1'],   // pale lilac
+      ['%23A5B4FC', '%234C1D95']    // periwinkle
+    ];
+    var nb = window.innerWidth < 640 ? 7 : 12;
+    for (var b = 0; b < nb; b++) {
+      var fc = FLOWERS[b % FLOWERS.length];
+      var el = document.createElement('span');
+      el.className = 'bloom';
+      el.style.backgroundImage =
+        "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'>" +
+        "<g fill='" + fc[0] + "'>" +
+        "<ellipse cy='-26' rx='13' ry='22'/>" +
+        "<ellipse cy='-26' rx='13' ry='22' transform='rotate(72)'/>" +
+        "<ellipse cy='-26' rx='13' ry='22' transform='rotate(144)'/>" +
+        "<ellipse cy='-26' rx='13' ry='22' transform='rotate(216)'/>" +
+        "<ellipse cy='-26' rx='13' ry='22' transform='rotate(288)'/>" +
+        "</g><circle r='11' fill='" + fc[1] + "'/></svg>\")";
+      el.style.backgroundSize = 'contain';
+      el.style.backgroundRepeat = 'no-repeat';
+      var bx = Math.random() * 100;
+      el.style.setProperty('--x0', bx + 'vw');
+      el.style.setProperty('--x1', (bx + (Math.random() * 22 - 11)) + 'vw');
+      el.style.setProperty('--t', (22 + Math.random() * 16) + 's');
+      el.style.setProperty('--delay', (-Math.random() * 38) + 's');
+      el.style.setProperty('--s', (16 + Math.random() * 20) + 'px');
+      el.style.setProperty('--o', (0.3 + Math.random() * 0.35).toFixed(2));
+      el.style.setProperty('--rot', (240 + Math.random() * 400) + 'deg');
+      blooms.appendChild(el);
+    }
+  }
+
   /* WhatsApp share — always points at wherever the site is hosted */
   var wa = $('waShare');
   if (wa) {

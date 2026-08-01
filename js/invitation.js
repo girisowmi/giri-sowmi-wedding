@@ -7,7 +7,7 @@
  *  Leave it empty and the section shows a friendly placeholder.
  * ─────────────────────────────────────────────────────────────
  */
-var SPOTIFY_LINK = '';
+var SPOTIFY_LINK = 'https://open.spotify.com/playlist/1DPRu7Z3HIg1Kn5veZ84nS';
 
 (function () {
   'use strict';
