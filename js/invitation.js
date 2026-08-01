@@ -120,7 +120,6 @@ var SPOTIFY_LINK = 'https://open.spotify.com/playlist/1DPRu7Z3HIg1Kn5veZ84nS';
   /* ——————————————— spotify ——————————————— */
 
   var player = document.getElementById('player');
-  var note   = document.getElementById('musicNote');
   if (!player) return;
 
   // https://open.spotify.com/playlist/<id>?si=... → playlist / <id>
@@ -143,7 +142,6 @@ var SPOTIFY_LINK = 'https://open.spotify.com/playlist/1DPRu7Z3HIg1Kn5veZ84nS';
       'fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>' +
       '<p>Our playlist is still being put together.</p>' +
       '</div>';
-    note.innerHTML = 'Paste your Spotify playlist link into <code>SPOTIFY_LINK</code> at the top of <code>js/invitation.js</code> to switch this on.';
     return;
   }
 
@@ -161,7 +159,4 @@ var SPOTIFY_LINK = 'https://open.spotify.com/playlist/1DPRu7Z3HIg1Kn5veZ84nS';
   frame.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
   frame.style.borderRadius = '14px';
   player.appendChild(frame);
-
-  note.innerHTML = 'Full songs play if you\'re signed in to Spotify — otherwise you\'ll hear a 30-second preview of each. ' +
-                   '<a href="https://open.spotify.com/' + parsed.kind + '/' + parsed.id + '" target="_blank" rel="noopener">Open in Spotify</a>';
 })();

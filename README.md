@@ -18,9 +18,10 @@ flocks of birds and a violet *toran*.
 - Live countdown (celebrations → muhurtham → "Happily married!")
 - **Wedding-day crackers** 🎆 — a fireworks canvas that switches itself on for
   12–13 September 2026 (IST) and stays dormant every other day
-- **View and download both invitations** — the formal card opens in a swipeable
-  5-page lightbox; both are downloadable
+- **View and download both invitations** — nothing is shown until a guest taps
+  View, which opens a swipeable 5-page lightbox; both are downloadable
 - **Spotify playlist** (♾️💙💜) — every track listed, click any one to play
+- **Contact card** with tap-to-call and WhatsApp links
 - Animated scenery: swaying coconut palms, flocks of birds, drifting blooms and petals
 - Per-event **Get directions** (Google Maps) and **Add to calendar**
   (Google Calendar + downloadable `.ics` for Apple/Outlook)
