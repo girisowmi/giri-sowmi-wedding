@@ -72,7 +72,7 @@ var SPOTIFY_LINK = '';
   function shut() {
     lb.hidden = true;
     document.body.classList.remove('lb-open');
-    lbImg.src = '';
+    lbImg.removeAttribute('src');
     if (lastFocus) lastFocus.focus();
   }
 
