@@ -941,7 +941,33 @@ body.lb-open { overflow: hidden; }
   color: var(--ink-900);
   margin: 1.4rem 0 .3rem;
 }
-.sig .hearts { font-size: .62em; vertical-align: .18em; }
+/* ————— the 💙💜 monogram ————— */
+.hearts {
+  display: inline-block;
+  width: 1.55em;
+  height: .91em;          /* the symbol's 46:27 ratio, so it never distorts */
+  vertical-align: -.04em;
+  overflow: visible;
+}
+.hearts.sm { width: 1.3em; height: .76em; }
+
+/* each heart beats, the second a touch behind the first */
+.hh { transform-origin: center 60%; animation: beat 2.4s ease-in-out infinite; }
+.hh-p { animation-delay: .22s; }
+@keyframes beat {
+  0%, 62%, 100% { transform: scale(1); }
+  12%           { transform: scale(1.13); }
+  26%           { transform: scale(1.02); }
+  38%           { transform: scale(1.09); }
+}
+
+.sig .hearts { margin: 0 .12em; }
+.music-name .infinity {
+  font-size: 1.15em;
+  color: var(--accent-2);
+  vertical-align: .04em;
+  margin-right: .1em;
+}
 .btn.wa { margin-top: 1.1rem; }
 .fineprint {
   margin-top: 1.7rem;
@@ -987,7 +1013,7 @@ body.lb-open { overflow: hidden; }
 /* ————— reduced motion ————— */
 @media (prefers-reduced-motion: reduce) {
   .fx, .scrollhint, .lan, .bulbs .b, .petal, .toran,
-  .frond, .bird, .flock, .bloom { animation: none !important; }
+  .frond, .bird, .flock, .bloom, .hh { animation: none !important; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .petals, .birds, .blooms { display: none; }
 }

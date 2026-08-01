@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Giri ♥ Sowmi — Wedding Invitation · 12 &amp; 13 September 2026, Erode</title>
 <meta name="description" content="No formalities, just good vibes! Reception on Sat 12 Sep 2026 at Brindhavan Mahal, Palayapalayam · Muhurtham on Sun 13 Sep 2026 at Shri Arulmigu Velayuthaswamy Temple, Thindal, Erode.">
-<meta name="theme-color" content="var(--bg)">
+<!-- a literal value: a meta tag cannot resolve a CSS variable. js/appearance.js
+     rewrites this from --theme-meta whenever the theme changes. -->
+<meta name="theme-color" content="#F6F4FF">
 
 <!-- Open Graph (WhatsApp / social share preview) -->
 <meta property="og:type" content="website">
@@ -68,6 +70,18 @@
 
   <!-- palm defined once, used twice; inline so the theme variables reach it -->
   <svg class="svg-defs" width="0" height="0" aria-hidden="true" focusable="false">
+    <!-- the couple's 💙💜 monogram, drawn rather than typed: emoji render
+         differently on every platform and never match the page -->
+    <linearGradient id="heart-blue" x1="0" y1="0" x2=".35" y2="1">
+      <stop offset="0" stop-color="#7DD3FC"/>
+      <stop offset=".5" stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <linearGradient id="heart-purple" x1="0" y1="0" x2=".35" y2="1">
+      <stop offset="0" stop-color="#D8B4FE"/>
+      <stop offset=".5" stop-color="#A855F7"/>
+      <stop offset="1" stop-color="#6D28D9"/>
+    </linearGradient>
     <symbol id="palm-sym" viewBox="0 0 300 420">
       <path d="M143 415 C136 320 132 240 140 168 L164 168 C160 240 158 320 161 415 Z" fill="var(--trunk)" opacity=".92"/>
       <g stroke="var(--deep)" stroke-width="1.6" opacity=".35" fill="none">
@@ -527,7 +541,10 @@
   <section class="music" id="music">
     <div class="wrap">
       <h2 class="script-h reveal">Our playlist</h2>
-      <p class="music-name reveal">♾️💙💜</p>
+      <p class="music-name reveal" aria-label="Infinity, blue heart, purple heart">
+        <span class="infinity" aria-hidden="true">&#8734;</span>
+        <svg class="hearts sm" viewBox="0 0 46 27" aria-hidden="true"><path class="hh hh-b" fill="url(#heart-blue)" d="M13 25.4 C5.3 19 1 15 1 10.4 A5.9 5.9 0 0 1 13 7.9 A5.9 5.9 0 0 1 25 10.4 C25 15 20.7 19 13 25.4 Z"/><path class="hh hh-p" fill="url(#heart-purple)" d="M33 25.4 C25.3 19 21 15 21 10.4 A5.9 5.9 0 0 1 33 7.9 A5.9 5.9 0 0 1 45 10.4 C45 15 40.7 19 33 25.4 Z"/></svg>
+      </p>
       <p class="music-sub reveal">
         The songs that have been on repeat for the two of us.
         Pick any one and press play. <span class="emoji">🎶</span>
@@ -607,7 +624,9 @@
   </svg>
   <p class="script-h small">With best compliments from</p>
   <p class="compliments">Relatives &amp; Friends</p>
-  <p class="sig">Giri <span class="hearts">💙💜</span> Sowmi</p>
+  <p class="sig">Giri
+    <svg class="hearts" viewBox="0 0 46 27" role="img" aria-label="love"><path class="hh hh-b" fill="url(#heart-blue)" d="M13 25.4 C5.3 19 1 15 1 10.4 A5.9 5.9 0 0 1 13 7.9 A5.9 5.9 0 0 1 25 10.4 C25 15 20.7 19 13 25.4 Z"/><path class="hh hh-p" fill="url(#heart-purple)" d="M33 25.4 C25.3 19 21 15 21 10.4 A5.9 5.9 0 0 1 33 7.9 A5.9 5.9 0 0 1 45 10.4 C45 15 40.7 19 33 25.4 Z"/></svg>
+    Sowmi</p>
   <a class="btn ghost wa" id="waShare" target="_blank" rel="noopener" href="https://wa.me/">
     <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" focusable="false">
       <path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
