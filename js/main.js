@@ -147,10 +147,11 @@
 
   /* ——————————————— share ———————————————
    *
-   * Two routes. On a phone, navigator.share sends the invitation *image* plus
-   * the message straight into WhatsApp; the text travels as a JS string, so
-   * nothing is URL-encoded and no character can be mangled on the way.
-   * Everywhere else the button stays an ordinary wa.me link.
+   * A plain wa.me link and nothing else. An earlier version intercepted the
+   * click to attach the invitation image via navigator.share; when that path
+   * bailed out it fell back to window.open from inside an async .catch, by
+   * which point the user gesture had expired and the popup was blocked — so
+   * the button silently did nothing. Not worth the attachment.
    */
   var INVITE_MESSAGE = [
     'After years of debugging life, we have finally decided to deploy Marriage v1.0! 💍🚀',
@@ -174,32 +175,9 @@
     'See you there! ❤️'
   ].join('\n');
 
-  var SHARE_IMAGE = './assets/invite/casual.jpg';
-
   var wa = $('waShare');
   if (wa) {
     var fullText = INVITE_MESSAGE + '\n\n' + location.href;
-
-    // keep a working href: no-JS, right-click and open-in-new-tab all still work
     wa.href = 'https://wa.me/?text=' + encodeURIComponent(fullText);
-
-    wa.addEventListener('click', function (e) {
-      if (!(navigator.canShare && navigator.share && window.File)) return;  // let the link do its job
-
-      e.preventDefault();
-      fetch(SHARE_IMAGE)
-        .then(function (r) { return r.ok ? r.blob() : Promise.reject(new Error('image ' + r.status)); })
-        .then(function (blob) {
-          var file = new File([blob], 'Giri-Sowmi-Invitation.jpg', { type: blob.type || 'image/jpeg' });
-          if (!navigator.canShare({ files: [file] })) return Promise.reject(new Error('files unsupported'));
-          return navigator.share({ files: [file], text: fullText });
-        })
-        .catch(function (err) {
-          // the guest closing the share sheet is not a failure — do not then
-          // fling them into WhatsApp behind their back
-          if (err && err.name === 'AbortError') return;
-          window.open(wa.href, '_blank', 'noopener');
-        });
-    });
   }
 })();
