@@ -134,6 +134,7 @@ var SPOTIFY_LINK = '';
   var parsed = SPOTIFY_LINK.trim() ? parseSpotify(SPOTIFY_LINK.trim()) : null;
 
   if (!parsed) {
+    player.classList.add('is-empty');
     player.innerHTML =
       '<div class="player-empty">' +
       '<svg viewBox="0 0 24 24" width="34" height="34" aria-hidden="true">' +
@@ -146,10 +147,14 @@ var SPOTIFY_LINK = '';
     return;
   }
 
+  // a track embed is a single row; everything else is a scrollable list, so give
+  // it real height (the container's CSS height drives it — see .player)
+  if (parsed.kind === 'track') player.classList.add('one-track');
+
   var frame = document.createElement('iframe');
   frame.src = 'https://open.spotify.com/embed/' + parsed.kind + '/' + parsed.id + '?utm_source=generator&theme=0';
   frame.width = '100%';
-  frame.height = parsed.kind === 'track' ? '152' : '420';
+  frame.height = '100%';
   frame.frameBorder = '0';
   frame.loading = 'lazy';
   frame.title = 'Giri and Sowmi wedding playlist on Spotify';
