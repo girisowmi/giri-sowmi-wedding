@@ -154,26 +154,28 @@
    * the button silently did nothing. Not worth the attachment.
    */
   var INVITE_MESSAGE = [
-    'After years of debugging life, we have finally decided to deploy Marriage v1.0! 💍🚀',
+    'After years of debugging life, we have finally decided to deploy Marriage v1.0!',
     '',
-    '👨‍💻 Giri 💙💜 Sowmi👰',
+    'Giri & Sowmi cordially welcomes',
     '',
-    '📅 12 September – Reception 🎉',
-    '📅 13 September – Wedding 👫',
+    '12 September – Reception',
+    '13 September – Wedding',
     '',
     'Your presence is the only requirement.',
-    'No login. No OTP. No subscription. 😜',
+    'No login. No OTP. No subscription.',
     '',
     'Come for the blessings...',
     'Stay for the selfies...',
-    'Leave only after the biryani! 🍛📸',
+    'Leave only after the biryani!',
     '',
     'Venue: Brindhavan Mahal, Erode',
     '',
-    "Don't miss this live event—there won't be a replay! 😄",
+    "Don't miss this live event—there won't be a replay!",
     '',
-    'See you there! ❤️'
+    'See you there!'
   ].join('\n');
+  // the link is appended below from location.href rather than written in here,
+  // so it stays correct if the site ever moves
 
   var wa = $('waShare');
   if (wa) {
