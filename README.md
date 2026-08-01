@@ -22,6 +22,7 @@ flocks of birds and a violet *toran*.
   View, which opens a swipeable 5-page lightbox; both are downloadable
 - **Spotify playlist** (♾️💙💜) — every track listed, click any one to play
 - **Contact card** with tap-to-call and WhatsApp links
+- **3 themes and 3 font pairings**, chosen by the guest and remembered
 - Animated scenery: swaying coconut palms, flocks of birds, drifting blooms and petals
 - Per-event **Get directions** (Google Maps) and **Add to calendar**
   (Google Calendar + downloadable `.ics` for Apple/Outlook)
@@ -98,6 +99,37 @@ enables GitHub Pages, and prints the live URL
 > is publicly readable and can be indexed by search engines. Remove the relatives
 > page or the contact numbers from `invitation/invitation.html` and re-run
 > `./make-pdf.sh` if you would rather not publish them.
+
+## Themes and fonts
+
+A palette button sits in the bottom-right corner. Choices are kept in
+`localStorage`, and a theme is applied inline in `<head>` before the first paint
+so a returning guest never sees the default flash first.
+
+| Theme | Look |
+|---|---|
+| `violet` | lavender paper, deep indigo ink, violet and cornflower (default) |
+| `rose` | the printed card's cream, deep green and antique gold |
+| `midnight` | dark indigo night, glowing lanterns, silhouetted palms |
+
+| Font | Pairing |
+|---|---|
+| `classic` | Great Vibes + Cormorant Garamond (default) |
+| `romantic` | Parisienne + Lora |
+| `refined` | Pinyon Script + Marcellus |
+
+You can also force either with a query string, which makes a specific look
+shareable as a link: `?theme=midnight&font=refined`.
+
+Every colour in `css/style.css` **and** in the inline SVGs comes from a
+variable, so adding a theme means copying one `[data-theme="…"]` block and
+changing the values — the palms, toran, florals, lanterns, petals and blooms all
+follow. That is also why the palms and toran are inline SVG rather than files:
+an `<img>` cannot see the page's variables. The petal and bloom shapes are data
+URIs built in `js/main.js`, which `GSDecor.repaint()` regenerates on a theme
+change.
+
+All nine theme × font combinations were checked for text contrast.
 
 ## Editing
 

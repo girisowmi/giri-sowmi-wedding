@@ -60,11 +60,40 @@
   /* gentle falling petals (skipped for reduced motion) */
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var holder = document.querySelector('.petals');
+
+  function cssVar(name) {
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  }
+  function petalImage() {
+    return "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' " +
+           "viewBox='0 0 24 24'><path d='M12 2C17 7 18.5 13.5 12 22C5.5 13.5 7 7 12 2Z' fill='" +
+           (cssVar('--petal') || '%23C9B6FF') + "' fill-opacity='0.9'/></svg>\")";
+  }
+  function bloomImage(petal, centre) {
+    return "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' " +
+           "viewBox='-50 -50 100 100'><g fill='" + petal + "'>" +
+           "<ellipse cy='-26' rx='13' ry='22'/>" +
+           "<ellipse cy='-26' rx='13' ry='22' transform='rotate(72)'/>" +
+           "<ellipse cy='-26' rx='13' ry='22' transform='rotate(144)'/>" +
+           "<ellipse cy='-26' rx='13' ry='22' transform='rotate(216)'/>" +
+           "<ellipse cy='-26' rx='13' ry='22' transform='rotate(288)'/>" +
+           "</g><circle r='11' fill='" + centre + "'/></svg>\")";
+  }
+  function enc(v) { return v.replace('#', '%23'); }
+  function bloomPalette() {
+    return [
+      [enc(cssVar('--deco-2')  || '#C4B5FD'), enc(cssVar('--accent')   || '#7C3AED')],
+      [enc(cssVar('--leaf')    || '#93C5FD'), enc(cssVar('--accent-3') || '#2563EB')],
+      [enc(cssVar('--deco')    || '#DDD6FE'), enc(cssVar('--accent-2') || '#6366F1')],
+      [enc(cssVar('--deco-mid')|| '#A5B4FC'), enc(cssVar('--ink-700')  || '#4C1D95')]
+    ];
+  }
   if (!reduceMotion && holder) {
     var count = window.innerWidth < 640 ? 8 : 13;
     for (var i = 0; i < count; i++) {
       var p = document.createElement('span');
       p.className = 'petal';
+      p.style.backgroundImage = petalImage();
       var x = Math.random() * 100;
       p.style.setProperty('--x0', x + 'vw');
       p.style.setProperty('--x1', (x + (Math.random() * 16 - 8)) + 'vw');
@@ -80,26 +109,13 @@
   /* drifting blooms — larger and slower than the petals, five-petalled */
   var blooms = document.querySelector('.blooms');
   if (!reduceMotion && blooms) {
-    var FLOWERS = [
-      ['%23C4B5FD', '%237C3AED'],   // violet
-      ['%2393C5FD', '%232563EB'],   // cornflower
-      ['%23DDD6FE', '%236366F1'],   // pale lilac
-      ['%23A5B4FC', '%234C1D95']    // periwinkle
-    ];
+    var FLOWERS = bloomPalette();
     var nb = window.innerWidth < 640 ? 7 : 12;
     for (var b = 0; b < nb; b++) {
       var fc = FLOWERS[b % FLOWERS.length];
       var el = document.createElement('span');
       el.className = 'bloom';
-      el.style.backgroundImage =
-        "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-50 -50 100 100'>" +
-        "<g fill='" + fc[0] + "'>" +
-        "<ellipse cy='-26' rx='13' ry='22'/>" +
-        "<ellipse cy='-26' rx='13' ry='22' transform='rotate(72)'/>" +
-        "<ellipse cy='-26' rx='13' ry='22' transform='rotate(144)'/>" +
-        "<ellipse cy='-26' rx='13' ry='22' transform='rotate(216)'/>" +
-        "<ellipse cy='-26' rx='13' ry='22' transform='rotate(288)'/>" +
-        "</g><circle r='11' fill='" + fc[1] + "'/></svg>\")";
+      el.style.backgroundImage = bloomImage(fc[0], fc[1]);
       el.style.backgroundSize = 'contain';
       el.style.backgroundRepeat = 'no-repeat';
       var bx = Math.random() * 100;
@@ -113,6 +129,21 @@
       blooms.appendChild(el);
     }
   }
+
+  /* the picker calls this after a theme change; the shapes are data URIs built
+     from CSS variables, which do not re-resolve on their own */
+  window.GSDecor = {
+    repaint: function () {
+      document.querySelectorAll('.petal').forEach(function (el) {
+        el.style.backgroundImage = petalImage();
+      });
+      var pal = bloomPalette();
+      document.querySelectorAll('.bloom').forEach(function (el, i) {
+        var fc = pal[i % pal.length];
+        el.style.backgroundImage = bloomImage(fc[0], fc[1]);
+      });
+    }
+  };
 
   /* WhatsApp share — always points at wherever the site is hosted */
   var wa = $('waShare');
