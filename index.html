@@ -82,6 +82,109 @@
       <stop offset=".5" stop-color="#A855F7"/>
       <stop offset="1" stop-color="#6D28D9"/>
     </linearGradient>
+    <!-- a corner spray; flipped with CSS to serve all four corners -->
+    <symbol id="corner-spray" viewBox="0 0 200 200">
+      <g fill="none" stroke="var(--leaf)" stroke-width="2.2" opacity=".7">
+        <path d="M-6 18 C42 26 78 58 96 104"/>
+        <path d="M14 -6 C24 40 58 74 108 90"/>
+        <path d="M-4 62 C30 68 54 88 68 118"/>
+      </g>
+      <g fill="var(--leaf)" opacity=".8">
+        <ellipse cx="30" cy="24" rx="15" ry="6"   transform="rotate(24 30 24)"/>
+        <ellipse cx="58" cy="44" rx="14" ry="5.6" transform="rotate(38 58 44)"/>
+        <ellipse cx="80" cy="72" rx="13" ry="5.2" transform="rotate(52 80 72)"/>
+        <ellipse cx="24" cy="52" rx="13" ry="5.2" transform="rotate(64 24 52)"/>
+        <ellipse cx="46" cy="80" rx="12" ry="4.8" transform="rotate(70 46 80)"/>
+        <ellipse cx="62" cy="16" rx="13" ry="5.2" transform="rotate(8 62 16)"/>
+      </g>
+      <g fill="var(--leaf-2)" opacity=".65">
+        <ellipse cx="44" cy="34" rx="11" ry="4.4" transform="rotate(-14 44 34)"/>
+        <ellipse cx="36" cy="98" rx="11" ry="4.4" transform="rotate(80 36 98)"/>
+        <ellipse cx="94" cy="58" rx="11" ry="4.4" transform="rotate(28 94 58)"/>
+      </g>
+      <!-- blooms, largest nearest the corner -->
+      <g transform="translate(24 22)">
+        <g fill="var(--deco)">
+          <ellipse cy="-19" rx="10" ry="16"/><ellipse cy="-19" rx="10" ry="16" transform="rotate(72)"/>
+          <ellipse cy="-19" rx="10" ry="16" transform="rotate(144)"/><ellipse cy="-19" rx="10" ry="16" transform="rotate(216)"/>
+          <ellipse cy="-19" rx="10" ry="16" transform="rotate(288)"/>
+        </g>
+        <circle r="7.5" fill="var(--deco-mid)"/><circle r="3.4" fill="var(--accent)"/>
+      </g>
+      <g transform="translate(74 52) scale(.74)">
+        <g fill="var(--deco-2)">
+          <ellipse cy="-19" rx="10" ry="16"/><ellipse cy="-19" rx="10" ry="16" transform="rotate(72)"/>
+          <ellipse cy="-19" rx="10" ry="16" transform="rotate(144)"/><ellipse cy="-19" rx="10" ry="16" transform="rotate(216)"/>
+          <ellipse cy="-19" rx="10" ry="16" transform="rotate(288)"/>
+        </g>
+        <circle r="7.5" fill="var(--deco-mid)"/><circle r="3.4" fill="var(--accent-2)"/>
+      </g>
+      <g transform="translate(18 92) scale(.6)">
+        <g fill="var(--deco-pale)">
+          <ellipse cy="-19" rx="10" ry="16"/><ellipse cy="-19" rx="10" ry="16" transform="rotate(72)"/>
+          <ellipse cy="-19" rx="10" ry="16" transform="rotate(144)"/><ellipse cy="-19" rx="10" ry="16" transform="rotate(216)"/>
+          <ellipse cy="-19" rx="10" ry="16" transform="rotate(288)"/>
+        </g>
+        <circle r="7.5" fill="var(--deco-mid)"/><circle r="3.4" fill="var(--accent)"/>
+      </g>
+      <g transform="translate(104 96) scale(.5)">
+        <g fill="var(--deco-2)">
+          <ellipse cy="-19" rx="10" ry="16"/><ellipse cy="-19" rx="10" ry="16" transform="rotate(72)"/>
+          <ellipse cy="-19" rx="10" ry="16" transform="rotate(144)"/><ellipse cy="-19" rx="10" ry="16" transform="rotate(216)"/>
+          <ellipse cy="-19" rx="10" ry="16" transform="rotate(288)"/>
+        </g>
+        <circle r="7.5" fill="var(--deco-mid)"/><circle r="3.4" fill="var(--accent-2)"/>
+      </g>
+      <g fill="var(--accent-soft)" opacity=".85">
+        <circle cx="92" cy="30" r="4"/><circle cx="112" cy="72" r="3.4"/>
+        <circle cx="56" cy="104" r="3.4"/><circle cx="8" cy="76" r="3"/>
+        <circle cx="70" cy="8" r="3"/>
+      </g>
+    </symbol>
+
+    <!-- a trailing vine for the page's left and right edges -->
+    <symbol id="edge-vine" viewBox="0 0 90 420">
+      <path d="M18 -8 C54 62 -4 130 34 202 C68 268 6 330 30 428"
+            fill="none" stroke="var(--leaf)" stroke-width="2.2" opacity=".62"/>
+      <g fill="var(--leaf)" opacity=".72">
+        <ellipse cx="40" cy="30"  rx="14" ry="5.6" transform="rotate(28 40 30)"/>
+        <ellipse cx="14" cy="72"  rx="13" ry="5.2" transform="rotate(-32 14 72)"/>
+        <ellipse cx="44" cy="118" rx="14" ry="5.6" transform="rotate(24 44 118)"/>
+        <ellipse cx="16" cy="168" rx="13" ry="5.2" transform="rotate(-28 16 168)"/>
+        <ellipse cx="52" cy="216" rx="14" ry="5.6" transform="rotate(30 52 216)"/>
+        <ellipse cx="20" cy="268" rx="13" ry="5.2" transform="rotate(-26 20 268)"/>
+        <ellipse cx="48" cy="322" rx="14" ry="5.6" transform="rotate(26 48 322)"/>
+        <ellipse cx="16" cy="374" rx="13" ry="5.2" transform="rotate(-30 16 374)"/>
+      </g>
+      <g transform="translate(30 54) scale(.62)">
+        <g fill="var(--deco)">
+          <ellipse cy="-19" rx="10" ry="16"/><ellipse cy="-19" rx="10" ry="16" transform="rotate(72)"/>
+          <ellipse cy="-19" rx="10" ry="16" transform="rotate(144)"/><ellipse cy="-19" rx="10" ry="16" transform="rotate(216)"/>
+          <ellipse cy="-19" rx="10" ry="16" transform="rotate(288)"/>
+        </g>
+        <circle r="7.5" fill="var(--deco-mid)"/><circle r="3.4" fill="var(--accent)"/>
+      </g>
+      <g transform="translate(34 190) scale(.55)">
+        <g fill="var(--deco-2)">
+          <ellipse cy="-19" rx="10" ry="16"/><ellipse cy="-19" rx="10" ry="16" transform="rotate(72)"/>
+          <ellipse cy="-19" rx="10" ry="16" transform="rotate(144)"/><ellipse cy="-19" rx="10" ry="16" transform="rotate(216)"/>
+          <ellipse cy="-19" rx="10" ry="16" transform="rotate(288)"/>
+        </g>
+        <circle r="7.5" fill="var(--deco-mid)"/><circle r="3.4" fill="var(--accent-2)"/>
+      </g>
+      <g transform="translate(38 340) scale(.58)">
+        <g fill="var(--deco-pale)">
+          <ellipse cy="-19" rx="10" ry="16"/><ellipse cy="-19" rx="10" ry="16" transform="rotate(72)"/>
+          <ellipse cy="-19" rx="10" ry="16" transform="rotate(144)"/><ellipse cy="-19" rx="10" ry="16" transform="rotate(216)"/>
+          <ellipse cy="-19" rx="10" ry="16" transform="rotate(288)"/>
+        </g>
+        <circle r="7.5" fill="var(--deco-mid)"/><circle r="3.4" fill="var(--accent)"/>
+      </g>
+      <g fill="var(--accent-soft)" opacity=".8">
+        <circle cx="26" cy="100" r="3.4"/><circle cx="30" cy="240" r="3"/><circle cx="24" cy="300" r="3.4"/>
+      </g>
+    </symbol>
+
     <symbol id="palm-sym" viewBox="0 0 300 420">
       <path d="M143 415 C136 320 132 240 140 168 L164 168 C160 240 158 320 161 415 Z" fill="var(--trunk)" opacity=".92"/>
       <g stroke="var(--deep)" stroke-width="1.6" opacity=".35" fill="none">
@@ -374,6 +477,12 @@
   </svg>
 
   <section class="blessings" id="blessings">
+
+      <div class="flora" aria-hidden="true">
+        <svg class="spray sp-tl" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
+        <svg class="spray sp-br" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
+        <svg class="vine vn-l" viewBox="0 0 90 420" preserveAspectRatio="xMidYMid slice"><use href="#edge-vine"/></svg>
+      </div>
     <div class="wrap">
       <h2 class="script-h reveal">With the blessings of</h2>
       <div class="parents reveal">
@@ -411,6 +520,12 @@
   </div>
 
   <section class="events" id="events">
+
+      <div class="flora" aria-hidden="true">
+        <svg class="spray sp-tl" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
+        <svg class="spray sp-br" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
+        <svg class="vine vn-r" viewBox="0 0 90 420" preserveAspectRatio="xMidYMid slice"><use href="#edge-vine"/></svg>
+      </div>
     <div class="wrap">
       <h2 class="script-h reveal">Save the dates</h2>
       <div class="cards">
@@ -488,6 +603,12 @@
   </div>
 
   <section class="download" id="invitation">
+
+      <div class="flora" aria-hidden="true">
+        <svg class="spray sp-tl" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
+        <svg class="spray sp-br" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
+        <svg class="vine vn-l" viewBox="0 0 90 420" preserveAspectRatio="xMidYMid slice"><use href="#edge-vine"/></svg>
+      </div>
     <div class="wrap">
       <h2 class="script-h reveal">Our invitation</h2>
       <p class="dl-note reveal" lang="ta">திருமண அழைப்பிதழ்</p>
@@ -539,6 +660,12 @@
   </div>
 
   <section class="music" id="music">
+
+      <div class="flora" aria-hidden="true">
+        <svg class="spray sp-tl" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
+        <svg class="spray sp-br" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
+        <svg class="vine vn-r" viewBox="0 0 90 420" preserveAspectRatio="xMidYMid slice"><use href="#edge-vine"/></svg>
+      </div>
     <div class="wrap">
       <h2 class="script-h reveal">Our playlist</h2>
       <p class="music-name reveal" aria-label="Infinity, blue heart, purple heart">
@@ -562,6 +689,12 @@
   </div>
 
   <section class="contact" id="contact">
+
+      <div class="flora" aria-hidden="true">
+        <svg class="spray sp-tl" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
+        <svg class="spray sp-br" viewBox="0 0 200 200"><use href="#corner-spray"/></svg>
+        <svg class="vine vn-l" viewBox="0 0 90 420" preserveAspectRatio="xMidYMid slice"><use href="#edge-vine"/></svg>
+      </div>
     <div class="wrap">
       <h2 class="script-h reveal">Need anything?</h2>
       <p class="contact-sub reveal">
@@ -641,5 +774,6 @@
 <script src="./js/crackers.js" defer></script>
 <script src="./js/invitation.js" defer></script>
 <script src="./js/appearance.js" defer></script>
+<script src="./js/burst.js" defer></script>
 </body>
 </html>

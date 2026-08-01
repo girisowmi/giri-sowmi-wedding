@@ -23,7 +23,9 @@ flocks of birds and a violet *toran*.
 - **Spotify playlist** (♾️💙💜) — every track listed, click any one to play
 - **Contact card** with tap-to-call and WhatsApp links
 - **3 themes and 3 font pairings**, chosen by the guest and remembered
-- Animated scenery: swaying coconut palms, flocks of birds, drifting blooms and petals
+- **Tap anywhere for a burst** of flowers and hearts (skips links and buttons)
+- Animated scenery: swaying coconut palms, flocks of birds, drifting blooms and
+  petals, plus floral corner sprays and edge vines on every section
 - Per-event **Get directions** (Google Maps) and **Add to calendar**
   (Google Calendar + downloadable `.ics` for Apple/Outlook)
 - **Share on WhatsApp** button with a pre-filled invite message
