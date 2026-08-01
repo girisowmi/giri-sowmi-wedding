@@ -28,7 +28,9 @@ flocks of birds and a violet *toran*.
   petals, plus floral corner sprays and edge vines on every section
 - Per-event **Get directions** (Google Maps) and **Add to calendar**
   (Google Calendar + downloadable `.ics` for Apple/Outlook)
-- **Share on WhatsApp** button with a pre-filled invite message
+- **Share on WhatsApp** — on a phone this sends the invitation *image* plus the
+  message via the Web Share API; elsewhere it falls back to a `wa.me` text link.
+  Edit `INVITE_MESSAGE` at the bottom of `js/main.js` to change the wording.
 - Open Graph tags + `assets/og.png` so shared links show a pretty preview card
 - Fully responsive, respects `prefers-reduced-motion`, no build step
 
