@@ -351,10 +351,13 @@ header, main, footer { position: relative; z-index: 2; }
 
 .tease {
   font-style: italic;
-  font-size: clamp(1.12rem, 2.8vw, 1.32rem);
+  font-size: clamp(1.06rem, 2.5vw, 1.24rem);
+  line-height: 1.65;
+  max-width: 30ch;
+  margin: 1.15rem auto 0;
   color: var(--ink-500);
-  margin-top: 1.15rem;
 }
+.tease b { font-style: normal; font-weight: 600; color: var(--ink-700); }
 
 .names {
   display: flex;
@@ -800,6 +803,7 @@ body.lb-open { overflow: hidden; }
   color: var(--ink-700);
   line-height: 1.3;
 }
+.serif-line.stanza { margin-top: 1.2rem; }
 .serif-line {
   font-style: italic;
   font-size: clamp(1.14rem, 2.7vw, 1.38rem);
@@ -999,8 +1003,16 @@ body.lb-open { overflow: hidden; }
   margin-right: .1em;
 }
 .btn.wa { margin-top: 1.1rem; }
+.lastcall {
+  max-width: 34ch;
+  margin: 1.9rem auto 0;
+  font-style: italic;
+  font-size: clamp(1rem, 2.4vw, 1.12rem);
+  line-height: 1.7;
+  color: var(--ink-700);
+}
 .fineprint {
-  margin-top: 1.7rem;
+  margin-top: 1rem;
   font-size: .8rem;
   letter-spacing: .14em;
   color: var(--ink-500);
