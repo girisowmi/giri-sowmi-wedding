@@ -998,8 +998,13 @@ body.lb-open { overflow: hidden; }
   right: clamp(12px, 2.5vw, 22px);
   bottom: clamp(12px, 2.5vw, 22px);
   z-index: 40;
-  text-align: right;
   font-family: var(--serif);
+  /* column-reverse puts the button (first in the DOM) at the bottom and grows
+     the panel upward. In normal flow the panel stacked *below* the button and,
+     with the box pinned by `bottom`, opening it shoved the button up the page. */
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
 }
 .appear-btn {
   display: inline-flex;
@@ -1025,6 +1030,9 @@ body.lb-open { overflow: hidden; }
 .appear-panel {
   width: 224px;
   margin-bottom: .6rem;
+  /* so a short landscape viewport scrolls the panel instead of clipping it */
+  max-height: calc(100vh - 96px);
+  overflow-y: auto;
   padding: 1rem 1rem 1.1rem;
   border: 1px solid var(--line);
   border-radius: 14px;
