@@ -1,0 +1,3 @@
+# iCalendar files must keep CRLF line endings (RFC 5545 §3.1) or strict
+# clients such as Outlook can reject them. Exempt from Git's EOL conversion.
+*.ics -text
