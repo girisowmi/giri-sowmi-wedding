@@ -21,8 +21,8 @@
   --deep: #3730A3;        --trunk: #8B5CF6;       --frond: #60A5FA;
   --line: #E4DEFF;
   --btn-bg: #4C1D95;      --btn-fg: #FBFAFF;
-  --wash-a: rgba(196,181,253,.42);
-  --wash-b: rgba(147,197,253,.36);
+  --wash-a: rgba(196,181,253,.35);
+  --wash-b: rgba(147,197,253,.28);
   --wash-c: rgba(165,180,252,.3);
   --wash-soft: rgba(196,181,253,.18);
   --shadow-sm: rgba(60,40,130,.07);
@@ -51,8 +51,8 @@
   --deep: #6B4E1E;        --trunk: #8A6A3A;       --frond: #7E9A74;
   --line: #EADFC6;
   --btn-bg: #2E4A38;      --btn-fg: #FDF9EF;
-  --wash-a: rgba(242,213,220,.5);
-  --wash-b: rgba(169,191,166,.38);
+  --wash-a: rgba(242,213,220,.42);
+  --wash-b: rgba(169,191,166,.3);
   --wash-c: rgba(227,206,156,.32);
   --wash-soft: rgba(201,167,95,.16);
   --shadow-sm: rgba(90,70,30,.07);
@@ -216,13 +216,12 @@ header, main, footer { position: relative; z-index: 2; }
 }
 
 /* ————— birds ————— */
-/* fixed at z-index 4 — the same trick the petals use. Below that the section
-   backgrounds paint straight over them, which is what hid them originally. */
+/* lives inside .hero: at body level the hero's own background painted over it */
 .birds {
-  position: fixed; inset: 0;
+  position: absolute; inset: 0;
   overflow: hidden;
   pointer-events: none;
-  z-index: 4;
+  z-index: 2;
 }
 .flock {
   position: absolute;
@@ -233,11 +232,9 @@ header, main, footer { position: relative; z-index: 2; }
   color: var(--ink-700);
   animation: fly linear infinite;
 }
-.flock1 { top: 11vh; opacity: .55; transform: scale(1);   animation-duration: 34s; animation-delay:  -4s; }
-.flock2 { top: 27vh; opacity: .4;  transform: scale(.68); animation-duration: 46s; animation-delay: -22s; }
-.flock3 { top: 5vh;  opacity: .3;  transform: scale(.5);  animation-duration: 58s; animation-delay: -38s; }
-.flock4 { top: 58vh; opacity: .34; transform: scale(.8);  animation-duration: 40s; animation-delay: -13s; }
-.flock5 { top: 74vh; opacity: .26; transform: scale(.58); animation-duration: 52s; animation-delay: -31s; }
+.flock1 { top: 12vh; opacity: .5;  transform: scale(1);   animation-duration: 34s; animation-delay:  -4s; }
+.flock2 { top: 26vh; opacity: .34; transform: scale(.68); animation-duration: 46s; animation-delay: -22s; }
+.flock3 { top: 6vh;  opacity: .26; transform: scale(.5);  animation-duration: 58s; animation-delay: -38s; }
 
 /* fly across, then reset off-screen left */
 @keyframes fly {
@@ -478,44 +475,6 @@ header, main, footer { position: relative; z-index: 2; }
 /* ————— sections ————— */
 section { position: relative; padding: 4.2rem 0; overflow: hidden; }
 
-/* ————— section light strings ————— */
-.lstring {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 54px;
-  opacity: .85;
-}
-.lstr .halo { fill: var(--glow); opacity: .42; }
-.lstr .b    { fill: var(--glow); stroke: var(--accent-2); stroke-width: .7; }
-.lstr line  { stroke-width: 1; opacity: .6; }
-.lstr g:nth-child(odd)  .b { animation: twinkle 3.4s ease-in-out infinite alternate; }
-.lstr g:nth-child(even) .b { animation: twinkle 4.3s ease-in-out -1.7s infinite alternate; }
-
-/* ————— twinkling sparkles ————— */
-.sparkles {
-  position: fixed; inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 3;
-}
-.sparkle {
-  position: absolute;
-  width: var(--s, 5px);
-  height: var(--s, 5px);
-  border-radius: 50%;
-  background: var(--glow);
-  /* blur only, no spread — with both it reads as a fuzzy smudge instead of a
-     point of light */
-  box-shadow: 0 0 var(--gl, 8px) var(--glow);
-  opacity: 0;
-  animation: sparkle var(--t, 4s) ease-in-out var(--delay, 0s) infinite;
-}
-@keyframes sparkle {
-  0%, 100% { opacity: 0;   transform: scale(.4); }
-  50%      { opacity: .85; transform: scale(1); }
-}
-
 /* ————— corner sprays & edge vines ————— */
 /* behind the section's own text but above its wash; the wrap sits at z-index 1 */
 .flora { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
@@ -525,11 +484,9 @@ section > .wrap { position: relative; z-index: 1; }
   position: absolute;
   width: clamp(96px, 15vw, 172px);
   height: auto;
-  opacity: .58;
+  opacity: .42;
 }
 .sp-tl { top: -8px;    left: -14px; }
-.sp-tr { top: -8px;    right: -14px; transform: scaleX(-1); }
-.sp-bl { bottom: -8px; left: -14px;  transform: scaleY(-1); }
 .sp-br { bottom: -8px; right: -14px; transform: rotate(180deg); }
 
 .vine {
@@ -537,7 +494,7 @@ section > .wrap { position: relative; z-index: 1; }
   top: 8%;
   height: 84%;
   width: clamp(46px, 7vw, 78px);
-  opacity: .46;
+  opacity: .32;
 }
 .vn-l { left: -10px; }
 .vn-r { right: -10px; transform: scaleX(-1); }
@@ -1076,10 +1033,10 @@ body.lb-open { overflow: hidden; }
 
 /* ————— reduced motion ————— */
 @media (prefers-reduced-motion: reduce) {
-  .fx, .scrollhint, .lan, .bulbs .b, .petal, .toran, .lstr .b,
-  .frond, .bird, .flock, .bloom, .hh, .sparkle { animation: none !important; }
+  .fx, .scrollhint, .lan, .bulbs .b, .petal, .toran,
+  .frond, .bird, .flock, .bloom, .hh { animation: none !important; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  .petals, .birds, .blooms, .sparkles { display: none; }
+  .petals, .birds, .blooms { display: none; }
 }
 
 /* ————— theme & font picker ————— */
