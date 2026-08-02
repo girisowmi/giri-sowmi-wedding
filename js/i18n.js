@@ -81,7 +81,7 @@ var GS_STRINGS = {
   },
 
   ta: {
-    tease:      'வாழ்க்கையைப் பல ஆண்டுகள் debug செய்த பிறகு, இறுதியாக<br><b>Marriage v1.0</b> வெளியிட முடிவு செய்துவிட்டோம்!',
+    tease:      'இரு உள்ளங்கள் &middot; ஒரே வாழ்க்கை<br><b>எங்கள் புதிய பயணம் தொடங்குகிறது!</b>',
     announce:   'நாங்கள் மணமுடிக்கிறோம்',
     datepill:   '12 &amp; 13 செப்டம்பர் 2026 · ஈரோடு, தமிழ்நாடு',
 
@@ -181,7 +181,11 @@ var GS_STRINGS = {
 
     document.querySelectorAll('[data-i18n]').forEach(function (el) {
       var v = t(el.dataset.i18n);
-      if (v) el.textContent = v;
+      if (!v) return;
+      // Belt and braces: a string carrying markup or an entity has to be set as
+      // HTML. Assigning it as text is what printed a literal "&amp;" and a
+      // visible <span> on the page. Every string here is ours, not user input.
+      if (/[<&]/.test(v)) el.innerHTML = v; else el.textContent = v;
     });
     document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
       var v = t(el.dataset.i18nHtml);
