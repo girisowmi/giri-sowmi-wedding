@@ -22,6 +22,7 @@ flocks of birds and a violet *toran*.
   View, which opens a swipeable 5-page lightbox; both are downloadable
 - **Spotify playlist** (♾️💙💜) — every track listed, click any one to play
 - **Contact card** with tap-to-call and WhatsApp links
+- **English / Tamil**, chosen by the guest and remembered — toggle at bottom-left
 - **3 themes and 3 font pairings**, chosen by the guest and remembered
 - **Tap anywhere for a burst** of flowers and hearts (skips links and buttons)
 - Animated scenery: swaying coconut palms, flocks of birds, drifting blooms and
@@ -133,6 +134,22 @@ URIs built in `js/main.js`, which `GSDecor.repaint()` regenerates on a theme
 change.
 
 All nine theme × font combinations were checked for text contrast.
+
+## Language
+
+Strings live in `js/i18n.js` as one `GS_STRINGS` object with an `en` and a `ta`
+block. Elements carry `data-i18n` (plain text) or `data-i18n-html` (markup, for
+anything with `<br>`, `<sup>` or `<b>`), and the toggle swaps both. Like the
+theme, the choice is stored and applied before first paint, and `?lang=ta`
+forces it for a shareable link.
+
+The couple's names stay in Latin script in both languages — they act as the
+site's logo, and the script faces have no Tamil glyphs. Those faces are also why
+Tamil headings fall back to Noto Serif Tamil at a smaller size: Great Vibes,
+Parisienne and Pinyon Script cannot render Tamil at all.
+
+> **The Tamil needs proofreading.** It was written to match the tone of the
+> English rather than translated literally.
 
 ## Editing
 

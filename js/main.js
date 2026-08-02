@@ -14,15 +14,20 @@
 
   function pad(n) { return n < 10 ? '0' + n : '' + n; }
 
+  // labels come from the dictionary so they follow the language toggle
+  function say(key, fallback) {
+    return (window.GSi18n && window.GSi18n.t(key)) || fallback;
+  }
+
   function tick() {
     var now = Date.now(), target, label;
 
     if (now < T.reception) {
-      target = T.reception; label = 'The celebrations begin in';
+      target = T.reception; label = say('cdSoon', 'The celebrations begin in');
     } else if (now < T.muhurtham) {
-      target = T.muhurtham; label = 'The muhurtham begins in';
+      target = T.muhurtham; label = say('cdMuh', 'The muhurtham begins in');
     } else {
-      elLabel.textContent = 'With all your love and blessings —';
+      elLabel.textContent = say('cdOver', 'With all your love and blessings —');
       elGrid.hidden = true;
       elDone.hidden = false;
       clearInterval(timer);
@@ -38,6 +43,9 @@
   }
   var timer = setInterval(tick, 1000);
   tick();
+  // the language toggle calls this so the label switches immediately rather
+  // than waiting for the next second to tick over
+  window.GSCountdown = { refresh: tick };
 
   /* reveal sections as they scroll into view */
   var reveals = document.querySelectorAll('.reveal');

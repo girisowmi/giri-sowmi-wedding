@@ -36,8 +36,12 @@
       if (!t) t = localStorage.getItem('gs-theme');
       if (!f) f = localStorage.getItem('gs-font');
     } catch (e) { /* private mode */ }
+    var g = q.get('lang');
+    try { if (!g) g = localStorage.getItem('gs-lang'); } catch (e) {}
     r.setAttribute('data-theme', /^(violet|rose|midnight)$/.test(t) ? t : 'violet');
     r.setAttribute('data-font',  /^(classic|romantic|refined)$/.test(f) ? f : 'classic');
+    r.setAttribute('data-lang',  /^(en|ta)$/.test(g) ? g : 'en');
+    r.setAttribute('lang', /^ta$/.test(g) ? 'ta' : 'en');
   })();
 </script>
 
@@ -398,7 +402,7 @@
       </g>
       <line x1="150" y1="13" x2="214" y2="13" stroke="var(--accent-2)" stroke-width="1"/>
     </svg>
-    <p class="tease fx">After years of debugging life, we have finally
+    <p class="tease fx" data-i18n-html="tease">After years of debugging life, we have finally
       decided to deploy <b>Marriage v1.0!</b></p>
 
     <h1 class="names fx" aria-label="Giri and Sowmi">
@@ -411,18 +415,18 @@
       <span class="name">Sowmi</span>
     </h1>
 
-    <p class="announce fx">We're getting married</p>
-    <p class="datepill fx">12<sup>th</sup> &amp; 13<sup>th</sup> September 2026 · Erode, Tamil Nadu</p>
+    <p class="announce fx" data-i18n="announce">We're getting married</p>
+    <p class="datepill fx" data-i18n-html="datepill">12<sup>th</sup> &amp; 13<sup>th</sup> September 2026 · Erode, Tamil Nadu</p>
 
     <section class="countdown fx" aria-label="Countdown to the wedding">
-      <p class="cd-label" id="cdLabel">The celebrations begin in</p>
+      <p class="cd-label" id="cdLabel" data-i18n="cdSoon">The celebrations begin in</p>
       <div class="cd-grid" id="cdGrid">
-        <div class="tile"><span class="num" id="cdD">–</span><span class="lab">Days</span></div>
-        <div class="tile"><span class="num" id="cdH">–</span><span class="lab">Hours</span></div>
-        <div class="tile"><span class="num" id="cdM">–</span><span class="lab">Minutes</span></div>
-        <div class="tile"><span class="num" id="cdS">–</span><span class="lab">Seconds</span></div>
+        <div class="tile"><span class="num" id="cdD">–</span><span class="lab" data-i18n="cdDays">Days</span></div>
+        <div class="tile"><span class="num" id="cdH">–</span><span class="lab" data-i18n="cdHours">Hours</span></div>
+        <div class="tile"><span class="num" id="cdM">–</span><span class="lab" data-i18n="cdMinutes">Minutes</span></div>
+        <div class="tile"><span class="num" id="cdS">–</span><span class="lab" data-i18n="cdSeconds">Seconds</span></div>
       </div>
-      <p class="cd-done" id="cdDone" hidden>Happily married! <span class="emoji">🎉</span></p>
+      <p class="cd-done" id="cdDone" hidden data-i18n-html="cdDone">Happily married! <span class="emoji">🎉</span></p>
     </section>
 
     <a class="scrollhint fx" href="#blessings" aria-label="Scroll down to the invitation details">
@@ -485,9 +489,9 @@
         <svg class="vine vn-l" viewBox="0 0 90 420" preserveAspectRatio="xMidYMid slice"><use href="#edge-vine"/></svg>
       </div>
     <div class="wrap">
-      <h2 class="script-h reveal">With the blessings of</h2>
+      <h2 class="script-h reveal" data-i18n="blessingsH">With the blessings of</h2>
       <div class="parents reveal">
-        <p class="pgroup">Mr. K.C. Appusamy<br>&amp; Mrs. A. Sivakami</p>
+        <p class="pgroup" data-i18n-html="parentsG">Mr. K.C. Appusamy<br>&amp; Mrs. A. Sivakami</p>
         <svg class="wheat" viewBox="0 0 28 88" aria-hidden="true" focusable="false">
           <line x1="14" y1="8" x2="14" y2="82" stroke="var(--accent)" stroke-width="1.4"/>
           <ellipse cx="14" cy="8" rx="3.2" ry="6.4" fill="var(--accent-pale)" stroke="var(--accent)" stroke-width=".5"/>
@@ -502,13 +506,13 @@
             <ellipse cx="20" cy="59" rx="7" ry="3.1" transform="rotate(38 20 59)"/>
           </g>
         </svg>
-        <p class="pgroup">Mr. K. Raja<br>&amp; Mrs. R. Vijayalakshmi</p>
+        <p class="pgroup" data-i18n-html="parentsB">Mr. K. Raja<br>&amp; Mrs. R. Vijayalakshmi</p>
       </div>
 
       <div class="invite-note reveal">
-        <p class="script-line">Your presence is the only requirement.</p>
-        <p class="serif-line">No login. No OTP. No subscription.</p>
-        <p class="serif-line stanza">
+        <p class="script-line" data-i18n="presence">Your presence is the only requirement.</p>
+        <p class="serif-line" data-i18n="noLogin">No login. No OTP. No subscription.</p>
+        <p class="serif-line stanza" data-i18n-html="stanza">
           Come for the blessings&hellip;<br>
           Stay for the selfies&hellip;<br>
           Leave only after the biryani!
@@ -533,67 +537,67 @@
         <svg class="vine vn-r" viewBox="0 0 90 420" preserveAspectRatio="xMidYMid slice"><use href="#edge-vine"/></svg>
       </div>
     <div class="wrap">
-      <h2 class="script-h reveal">Save the dates</h2>
+      <h2 class="script-h reveal" data-i18n="datesH">Save the dates</h2>
       <div class="cards">
 
         <article class="card reveal">
-          <h3 class="card-title">Reception</h3>
+          <h3 class="card-title" data-i18n="recTitle">Reception</h3>
           <svg class="ev-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/>
             <path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
           </svg>
-          <p class="ev-day">Saturday</p>
-          <p class="ev-date">12<sup>th</sup> September 2026</p>
+          <p class="ev-day" data-i18n="recDay">Saturday</p>
+          <p class="ev-date" data-i18n-html="recDate">12<sup>th</sup> September 2026</p>
           <div class="dots"></div>
           <svg class="ev-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.7"/>
             <path d="M12 7.5V12l3.5 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <p class="ev-time">6.00 PM – 9.00 PM</p>
+          <p class="ev-time" data-i18n="recTime">6.00 PM – 9.00 PM</p>
           <div class="dots"></div>
           <svg class="ev-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M12 21C12 21 5.5 14.8 5.5 10a6.5 6.5 0 1 1 13 0C18.5 14.8 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
             <circle cx="12" cy="10" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
           </svg>
-          <p class="ev-venue">Brindhavan Mahal</p>
-          <p class="ev-area">Palayapalayam, Erode</p>
+          <p class="ev-venue" data-i18n="recVenue">Brindhavan Mahal</p>
+          <p class="ev-area" data-i18n="recArea">Palayapalayam, Erode</p>
           <div class="btns">
             <a class="btn solid" target="_blank" rel="noopener"
-               href="https://www.google.com/maps/search/?api=1&amp;query=Brindhavan+Mahal%2C+Palayapalayam%2C+Erode">Get directions</a>
+               href="https://www.google.com/maps/search/?api=1&amp;query=Brindhavan+Mahal%2C+Palayapalayam%2C+Erode" data-i18n="directions">Get directions</a>
             <a class="btn ghost" target="_blank" rel="noopener"
-               href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Giri+%E2%99%A5+Sowmi+%E2%80%94+Wedding+Reception&amp;dates=20260912T123000Z/20260912T153000Z&amp;location=Brindhavan+Mahal%2C+Palayapalayam%2C+Erode%2C+Tamil+Nadu&amp;details=No+formalities%2C+just+good+vibes!+Come+eat%2C+laugh%2C+dance+and+bless+us+as+we+start+our+forever.">Add to calendar</a>
+               href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Giri+%E2%99%A5+Sowmi+%E2%80%94+Wedding+Reception&amp;dates=20260912T123000Z/20260912T153000Z&amp;location=Brindhavan+Mahal%2C+Palayapalayam%2C+Erode%2C+Tamil+Nadu&amp;details=No+formalities%2C+just+good+vibes!+Come+eat%2C+laugh%2C+dance+and+bless+us+as+we+start+our+forever." data-i18n="addCal">Add to calendar</a>
           </div>
-          <a class="ics" href="./reception.ics" download>Apple / Outlook calendar (.ics)</a>
+          <a class="ics" href="./reception.ics" download data-i18n="ics">Apple / Outlook calendar (.ics)</a>
         </article>
 
         <article class="card reveal">
-          <h3 class="card-title">Muhurtham</h3>
+          <h3 class="card-title" data-i18n="muhTitle">Muhurtham</h3>
           <svg class="ev-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.7"/>
             <path d="M3.5 10h17M8 3v4M16 3v4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
           </svg>
-          <p class="ev-day">Sunday</p>
-          <p class="ev-date">13<sup>th</sup> September 2026</p>
+          <p class="ev-day" data-i18n="muhDay">Sunday</p>
+          <p class="ev-date" data-i18n-html="muhDate">13<sup>th</sup> September 2026</p>
           <div class="dots"></div>
           <svg class="ev-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.7"/>
             <path d="M12 7.5V12l3.5 2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          <p class="ev-time">9.00 AM – 10.00 AM</p>
+          <p class="ev-time" data-i18n="muhTime">9.00 AM – 10.00 AM</p>
           <div class="dots"></div>
           <svg class="ev-ic" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path d="M12 21C12 21 5.5 14.8 5.5 10a6.5 6.5 0 1 1 13 0C18.5 14.8 12 21 12 21Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
             <circle cx="12" cy="10" r="2.4" fill="none" stroke="currentColor" stroke-width="1.7"/>
           </svg>
-          <p class="ev-venue">Shri Arulmigu Velayuthaswamy Temple</p>
-          <p class="ev-area">Thindal, Erode</p>
+          <p class="ev-venue" data-i18n="muhVenue">Shri Arulmigu Velayuthaswamy Temple</p>
+          <p class="ev-area" data-i18n="muhArea">Thindal, Erode</p>
           <div class="btns">
             <a class="btn solid" target="_blank" rel="noopener"
-               href="https://www.google.com/maps/search/?api=1&amp;query=Arulmigu+Velayuthaswamy+Temple%2C+Thindal%2C+Erode">Get directions</a>
+               href="https://www.google.com/maps/search/?api=1&amp;query=Arulmigu+Velayuthaswamy+Temple%2C+Thindal%2C+Erode" data-i18n="directions">Get directions</a>
             <a class="btn ghost" target="_blank" rel="noopener"
-               href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Giri+%E2%99%A5+Sowmi+%E2%80%94+Muhurtham&amp;dates=20260913T033000Z/20260913T043000Z&amp;location=Shri+Arulmigu+Velayuthaswamy+Temple%2C+Thindal%2C+Erode%2C+Tamil+Nadu&amp;details=Muhurtham+from+9.00+to+10.00+AM.+Come+bless+the+couple!">Add to calendar</a>
+               href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Giri+%E2%99%A5+Sowmi+%E2%80%94+Muhurtham&amp;dates=20260913T033000Z/20260913T043000Z&amp;location=Shri+Arulmigu+Velayuthaswamy+Temple%2C+Thindal%2C+Erode%2C+Tamil+Nadu&amp;details=Muhurtham+from+9.00+to+10.00+AM.+Come+bless+the+couple!" data-i18n="addCal">Add to calendar</a>
           </div>
-          <a class="ics" href="./muhurtham.ics" download>Apple / Outlook calendar (.ics)</a>
+          <a class="ics" href="./muhurtham.ics" download data-i18n="ics">Apple / Outlook calendar (.ics)</a>
         </article>
 
       </div>
@@ -616,7 +620,7 @@
         <svg class="vine vn-l" viewBox="0 0 90 420" preserveAspectRatio="xMidYMid slice"><use href="#edge-vine"/></svg>
       </div>
     <div class="wrap">
-      <h2 class="script-h reveal">Our invitation</h2>
+      <h2 class="script-h reveal" data-i18n="inviteH">Our invitation</h2>
       <p class="dl-note reveal" lang="ta">திருமண அழைப்பிதழ்</p>
 
       <div class="inv-cards">
@@ -627,11 +631,11 @@
               <path d="M14 2.8v5h5M8 12.5h8M8 16h8M8 9h3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
           </span>
-          <h3>Formal invitation</h3>
+          <h3 data-i18n="formalTitle">Formal invitation</h3>
           <p class="inv-sub" lang="ta">திருமண அழைப்பிதழ்</p>
           <div class="inv-btns">
-            <button class="btn solid sm" type="button" data-gallery="formal" data-index="0">View</button>
-            <a class="btn ghost sm" href="./GiriSowmiWeddingInvitation.pdf" download>Download PDF</a>
+            <button class="btn solid sm" type="button" data-gallery="formal" data-index="0" data-i18n="view">View</button>
+            <a class="btn ghost sm" href="./GiriSowmiWeddingInvitation.pdf" download data-i18n="dlPdf">Download PDF</a>
           </div>
         </article>
 
@@ -643,11 +647,11 @@
               <path d="M12 16.4c-2.4-1.9-3.9-3-3.9-4.3a1.9 1.9 0 0 1 3.9-.8 1.9 1.9 0 0 1 3.9.8c0 1.3-1.5 2.4-3.9 4.3Z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
             </svg>
           </span>
-          <h3>Save-the-date card</h3>
-          <p class="inv-sub">The card we've been sharing</p>
+          <h3 data-i18n="casualTitle">Save-the-date card</h3>
+          <p class="inv-sub" data-i18n="casualSub">The card we've been sharing</p>
           <div class="inv-btns">
-            <button class="btn solid sm" type="button" data-gallery="casual" data-index="0">View</button>
-            <a class="btn ghost sm" href="./GiriSowmi-Wedding.png" download>Download image</a>
+            <button class="btn solid sm" type="button" data-gallery="casual" data-index="0" data-i18n="view">View</button>
+            <a class="btn ghost sm" href="./GiriSowmi-Wedding.png" download data-i18n="dlImg">Download image</a>
           </div>
         </article>
       </div>
@@ -670,12 +674,12 @@
         <svg class="vine vn-r" viewBox="0 0 90 420" preserveAspectRatio="xMidYMid slice"><use href="#edge-vine"/></svg>
       </div>
     <div class="wrap">
-      <h2 class="script-h reveal">Our playlist</h2>
+      <h2 class="script-h reveal" data-i18n="musicH">Our playlist</h2>
       <p class="music-name reveal" aria-label="Infinity, blue heart, purple heart">
         <span class="infinity" aria-hidden="true">&#8734;</span>
         <svg class="hearts sm" viewBox="0 0 46 27" aria-hidden="true"><path class="hh hh-b" fill="url(#heart-blue)" d="M13 25.4 C5.3 19 1 15 1 10.4 A5.9 5.9 0 0 1 13 7.9 A5.9 5.9 0 0 1 25 10.4 C25 15 20.7 19 13 25.4 Z"/><path class="hh hh-p" fill="url(#heart-purple)" d="M33 25.4 C25.3 19 21 15 21 10.4 A5.9 5.9 0 0 1 33 7.9 A5.9 5.9 0 0 1 45 10.4 C45 15 40.7 19 33 25.4 Z"/></svg>
       </p>
-      <p class="music-sub reveal">
+      <p class="music-sub reveal" data-i18n="musicSub">
         The songs that have been on repeat for the two of us.
         Pick any one and press play. <span class="emoji">🎶</span>
       </p>
@@ -699,8 +703,8 @@
         <svg class="vine vn-l" viewBox="0 0 90 420" preserveAspectRatio="xMidYMid slice"><use href="#edge-vine"/></svg>
       </div>
     <div class="wrap">
-      <h2 class="script-h reveal">Need anything?</h2>
-      <p class="contact-sub reveal">
+      <h2 class="script-h reveal" data-i18n="contactH">Need anything?</h2>
+      <p class="contact-sub reveal" data-i18n="contactSub">
         Directions, timings, or anything at all — just call or message.
       </p>
 
@@ -708,7 +712,7 @@
         <article class="contact-card reveal">
           <span class="c-avatar" aria-hidden="true">G</span>
           <p class="c-name">Giri</p>
-          <p class="c-role">Groom</p>
+          <p class="c-role" data-i18n="cRole">Groom</p>
           <a class="c-num" href="tel:+919677948151">+91 96779 48151</a>
           <div class="c-btns">
             <a class="btn solid sm" href="tel:+919677948151">
@@ -716,7 +720,7 @@
                 <path d="M6.3 3.5h3l1.5 3.7-1.9 1.4a11.5 11.5 0 0 0 5.5 5.5l1.4-1.9 3.7 1.5v3a1.8 1.8 0 0 1-2 1.8A15.6 15.6 0 0 1 4.5 5.5a1.8 1.8 0 0 1 1.8-2Z"
                       fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
               </svg>
-              Call
+              <span data-i18n="call">Call</span>
             </a>
             <a class="btn ghost sm" href="https://wa.me/919677948151" target="_blank" rel="noopener">
               <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
@@ -758,8 +762,8 @@
       <g><line x1="706" y1="23" x2="706" y2="31" stroke="var(--muted)"/><circle class="halo" cx="706" cy="35" r="7"/><circle class="b" cx="706" cy="35" r="3"/></g>
     </g>
   </svg>
-  <p class="script-h small">With best compliments from</p>
-  <p class="compliments">Relatives &amp; Friends</p>
+  <p class="script-h small" data-i18n="compFrom">With best compliments from</p>
+  <p class="compliments" data-i18n="relFriends">Relatives &amp; Friends</p>
   <p class="sig">Giri
     <svg class="hearts" viewBox="0 0 46 27" role="img" aria-label="love"><path class="hh hh-b" fill="url(#heart-blue)" d="M13 25.4 C5.3 19 1 15 1 10.4 A5.9 5.9 0 0 1 13 7.9 A5.9 5.9 0 0 1 25 10.4 C25 15 20.7 19 13 25.4 Z"/><path class="hh hh-p" fill="url(#heart-purple)" d="M33 25.4 C25.3 19 21 15 21 10.4 A5.9 5.9 0 0 1 33 7.9 A5.9 5.9 0 0 1 45 10.4 C45 15 40.7 19 33 25.4 Z"/></svg>
     Sowmi</p>
@@ -768,11 +772,12 @@
       <path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
       <path d="M9.2 8.2c.3-.8 1.5-.9 1.8-.1l.5 1.1c.1.3 0 .7-.2 1l-.5.5c.4 1.1 1.4 2.1 2.5 2.5l.5-.5c.3-.3.7-.4 1-.2l1.1.5c.8.3.7 1.5-.1 1.8-3.6 1.3-7.9-3-6.6-6.6Z" fill="currentColor"/>
     </svg>
-    Share on WhatsApp
+    <span data-i18n="shareWa">Share on WhatsApp</span>
   </a>
-  <p class="fineprint">12 &amp; 13 September 2026 · Erode, Tamil Nadu</p>
+  <p class="fineprint" data-i18n-html="fineprint">12 &amp; 13 September 2026 · Erode, Tamil Nadu</p>
 </footer>
 
+<script src="./js/i18n.js" defer></script>
 <script src="./js/main.js" defer></script>
 <script src="./js/crackers.js" defer></script>
 <script src="./js/invitation.js" defer></script>

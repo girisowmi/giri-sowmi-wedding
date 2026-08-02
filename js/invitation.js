@@ -14,24 +14,30 @@ var SPOTIFY_LINK = 'https://open.spotify.com/playlist/1DPRu7Z3HIg1Kn5veZ84nS';
 
   /* ——————————————— invitation lightbox ——————————————— */
 
+  // titles and captions are looked up at render time so they follow the
+  // language toggle rather than being frozen at load
+  function t(key, fallback) {
+    return (window.GSi18n && window.GSi18n.t(key)) || fallback;
+  }
+
   var GALLERIES = {
     formal: {
-      title: 'Formal invitation',
+      titleKey: 'galFormal',
       download: './GiriSowmiWeddingInvitation.pdf',
-      downloadLabel: 'Download PDF',
+      dlKey: 'dlPdf',
       pages: [
-        { src: './assets/invite/page-1.jpg', cap: 'Envelope' },
-        { src: './assets/invite/page-2.jpg', cap: 'மணமக்கள் · Giri &amp; Sowmi' },
-        { src: './assets/invite/page-3.jpg', cap: 'Wedding Invitation' },
-        { src: './assets/invite/page-4.jpg', cap: 'திருமண அழைப்பிதழ்' },
-        { src: './assets/invite/page-5.jpg', cap: 'என்னவன் என்னவள் · the rituals' }
+        { src: './assets/invite/page-1.jpg', capKey: 'capEnvelope' },
+        { src: './assets/invite/page-2.jpg', capKey: 'capCouple' },
+        { src: './assets/invite/page-3.jpg', capKey: 'capInvite' },
+        { src: './assets/invite/page-4.jpg', capKey: 'capTamil' },
+        { src: './assets/invite/page-5.jpg', capKey: 'capRituals' }
       ]
     },
     casual: {
-      title: 'Save-the-date card',
+      titleKey: 'galCasual',
       download: './GiriSowmi-Wedding.png',
-      downloadLabel: 'Download image',
-      pages: [ { src: './assets/invite/casual.jpg', cap: 'Save the date' } ]
+      dlKey: 'dlImg',
+      pages: [ { src: './assets/invite/casual.jpg', capKey: 'capSaveDate' } ]
     }
   };
 
@@ -48,13 +54,14 @@ var SPOTIFY_LINK = 'https://open.spotify.com/playlist/1DPRu7Z3HIg1Kn5veZ84nS';
   function render() {
     var g = GALLERIES[current];
     var p = g.pages[index];
+    var cap = t(p.capKey, '');
     lbImg.src = p.src;
-    lbImg.alt = g.title + ' — ' + p.cap.replace(/&amp;/g, '&');
+    lbImg.alt = t(g.titleKey, '') + ' — ' + cap.replace(/&amp;/g, '&');
     lbCap.innerHTML = g.pages.length > 1
-      ? p.cap + ' <span class="lb-count">' + (index + 1) + ' / ' + g.pages.length + '</span>'
-      : p.cap;
+      ? cap + ' <span class="lb-count">' + (index + 1) + ' / ' + g.pages.length + '</span>'
+      : cap;
     lbDl.href = g.download;
-    lbDl.textContent = g.downloadLabel;
+    lbDl.textContent = t('lbDownload', 'Download');
     var many = g.pages.length > 1;
     prev.hidden = next.hidden = !many;
   }
@@ -81,6 +88,9 @@ var SPOTIFY_LINK = 'https://open.spotify.com/playlist/1DPRu7Z3HIg1Kn5veZ84nS';
     index = (index + d + n) % n;
     render();
   }
+
+  // re-render if the language changes while the viewer is open
+  window.GSGallery = { refresh: function () { if (current && !lb.hidden) render(); } };
 
   document.querySelectorAll('[data-gallery]').forEach(function (el) {
     el.addEventListener('click', function () {

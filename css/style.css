@@ -1164,3 +1164,76 @@ body.lb-open { overflow: hidden; }
   55%  { transform: translate3d(var(--dx), var(--dy), 0) scale(1) rotate(calc(var(--rot) * .55)); opacity: 1; }
   100% { transform: translate3d(calc(var(--dx) * 1.35), calc(var(--dy) + var(--fall)), 0) scale(.7) rotate(var(--rot)); opacity: 0; }
 }
+
+/* ————— language toggle ————— */
+.lang {
+  position: fixed;
+  left: clamp(12px, 2.5vw, 22px);
+  bottom: clamp(12px, 2.5vw, 22px);
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  gap: .1rem;
+  padding: .3rem .4rem;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  background: var(--panel);
+  box-shadow: 0 8px 24px var(--shadow);
+}
+.lang button {
+  border: 0;
+  border-radius: 99px;
+  padding: .38rem .8rem;
+  background: transparent;
+  color: var(--ink-500);
+  font-family: var(--serif);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  cursor: pointer;
+  transition: background-color .18s ease, color .18s ease;
+}
+.lang button[lang="ta"] { font-family: var(--tamil); letter-spacing: 0; }
+.lang button:hover { background: var(--ghost-hover); }
+.lang button.on { background: var(--btn-bg); color: var(--btn-fg); }
+.lang-sep { width: 1px; height: 16px; background: var(--line); }
+
+/* ————— Tamil typography —————
+   The script faces (Great Vibes, Parisienne, Pinyon Script) carry no Tamil
+   glyphs at all, so every script heading has to fall back to the Tamil face —
+   and since that face has a much larger x-height, each one needs scaling down
+   to keep the same visual weight. */
+[data-lang="ta"] .script-h,
+[data-lang="ta"] .script-line,
+[data-lang="ta"] .card-title,
+[data-lang="ta"] .cd-done,
+[data-lang="ta"] .title-en {
+  font-family: var(--tamil);
+  font-weight: 600;
+  line-height: 1.45;
+}
+[data-lang="ta"] .script-h      { font-size: clamp(1.34rem, 3.4vw, 1.68rem); }
+[data-lang="ta"] .script-h.small{ font-size: clamp(1.1rem, 2.8vw, 1.28rem); }
+[data-lang="ta"] .script-line   { font-size: clamp(1.18rem, 3.2vw, 1.56rem); }
+[data-lang="ta"] .card-title    { font-size: 1.5rem; }
+[data-lang="ta"] .cd-done       { font-size: 1.34rem; }
+
+/* Tamil runs longer than English, so give the running text more room */
+[data-lang="ta"] .tease        { max-width: 34ch; }
+[data-lang="ta"] .contact-sub,
+[data-lang="ta"] .music-sub    { max-width: 44ch; }
+[data-lang="ta"] .ev-venue     { letter-spacing: 0; text-transform: none; }
+/* Tamil letters carry combining vowel marks; tracking pulls them off the
+   consonant they belong to, so the wide uppercase spacing has to go */
+[data-lang="ta"] .compliments,
+[data-lang="ta"] .announce,
+[data-lang="ta"] .ev-day,
+[data-lang="ta"] .c-role,
+[data-lang="ta"] .datepill,
+[data-lang="ta"] .fineprint,
+[data-lang="ta"] .btn          { letter-spacing: .02em; text-indent: 0; }
+[data-lang="ta"] .announce     { font-size: .92rem; }
+
+@media (max-width: 640px) {
+  .lang button { padding: .34rem .6rem; font-size: .72rem; }
+}
