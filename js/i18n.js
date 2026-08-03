@@ -140,11 +140,11 @@ var GS_STRINGS = {
     shareWa:     'WhatsApp-ல் பகிர',
     fineprint:   '12 &amp; 13 செப்டம்பர் 2026 · ஈரோடு, தமிழ்நாடு',
 
-    capEnvelope: 'உறை',
+    capEnvelope: 'முகப்பு',
     capCouple:   'மணமக்கள் · கிரி &amp; சௌமி',
     capInvite:   'திருமண அழைப்பிதழ் (ஆங்கிலம்)',
     capTamil:    'திருமண அழைப்பிதழ்',
-    capRituals:  'என்னவன் என்னவள் · சடங்குகள்',
+    capRituals:  'என்னவன் என்னவள் · நிகழ்ச்சிகள்',
     capSaveDate: 'நினைவூட்டல் அட்டை',
     galFormal:   'முறையான அழைப்பிதழ்',
     galCasual:   'நினைவூட்டல் அட்டை'
