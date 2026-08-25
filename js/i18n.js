@@ -70,6 +70,8 @@ var GS_STRINGS = {
     shareWa:     'Share on WhatsApp',
     fineprint:   '12 &amp; 13 September 2026 · Erode, Tamil Nadu',
 
+    introHint:   'Tap to open',
+
     capEnvelope: 'Envelope',
     capCouple:   'மணமக்கள் · Giri &amp; Sowmi',
     capInvite:   'Wedding Invitation',
@@ -140,6 +142,8 @@ var GS_STRINGS = {
     shareWa:     'WhatsApp-ல் பகிர',
     fineprint:   '12 &amp; 13 செப்டம்பர் 2026 · ஈரோடு, தமிழ்நாடு',
 
+    introHint:   'திறக்கத் தொடுங்கள்',
+
     capEnvelope: 'முகப்பு',
     capCouple:   'மணமக்கள் · கிரி &amp; சௌமி',
     capInvite:   'திருமண அழைப்பிதழ் (ஆங்கிலம்)',
@@ -196,6 +200,7 @@ var GS_STRINGS = {
     // builds captions on open — both read from GSi18n, so nudge them
     if (window.GSCountdown && window.GSCountdown.refresh) window.GSCountdown.refresh();
     if (window.GSGallery && window.GSGallery.refresh) window.GSGallery.refresh();
+    if (window.GSIntro && window.GSIntro.localiseDate) window.GSIntro.localiseDate();
     sync();
   }
 

@@ -42,6 +42,12 @@
     r.setAttribute('data-font',  /^(classic|romantic|refined)$/.test(f) ? f : 'classic');
     r.setAttribute('data-lang',  /^(en|ta)$/.test(g) ? g : 'en');
     r.setAttribute('lang', /^ta$/.test(g) ? 'ta' : 'en');
+
+    var i = q.get('intro'), seen = false;
+    try { seen = localStorage.getItem('gs-intro') === 'seen'; } catch (e) {}
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var show = i === '1' ? true : (i === '0' ? false : (!seen && !reduce));
+    r.setAttribute('data-intro', show ? 'show' : 'skip');
   })();
 </script>
 
@@ -71,6 +77,34 @@
 </script>
 </head>
 <body>
+
+<!-- first visit only: a sealed envelope that opens into the page -->
+<div class="intro" id="intro" role="dialog" aria-label="Open the invitation">
+  <div class="intro-stage">
+    <div class="env" id="env">
+      <div class="env-back"></div>
+
+      <div class="env-card">
+        <p class="ec-om" lang="ta">ஸ்ரீ முருகன் துணை</p>
+        <p class="ec-names">Giri
+          <svg class="hearts" viewBox="0 0 46 27" role="img" aria-label="love"><path class="hh hh-b" fill="url(#heart-blue)" d="M13 25.4 C5.3 19 1 15 1 10.4 A5.9 5.9 0 0 1 13 7.9 A5.9 5.9 0 0 1 25 10.4 C25 15 20.7 19 13 25.4 Z"/><path class="hh hh-p" fill="url(#heart-purple)" d="M33 25.4 C25.3 19 21 15 21 10.4 A5.9 5.9 0 0 1 33 7.9 A5.9 5.9 0 0 1 45 10.4 C45 15 40.7 19 33 25.4 Z"/></svg>
+          Sowmi</p>
+        <p class="ec-date" id="introDate">12 &amp; 13 September 2026</p>
+      </div>
+
+      <div class="env-front"></div>
+      <div class="env-flap"></div>
+
+      <button class="env-seal" id="envOpen" type="button" aria-describedby="introHint">
+        <span class="seal-inner">
+          <svg viewBox="0 0 46 27" aria-hidden="true"><path fill="url(#heart-blue)" d="M13 25.4 C5.3 19 1 15 1 10.4 A5.9 5.9 0 0 1 13 7.9 A5.9 5.9 0 0 1 25 10.4 C25 15 20.7 19 13 25.4 Z"/><path fill="url(#heart-purple)" d="M33 25.4 C25.3 19 21 15 21 10.4 A5.9 5.9 0 0 1 33 7.9 A5.9 5.9 0 0 1 45 10.4 C45 15 40.7 19 33 25.4 Z"/></svg>
+        </span>
+      </button>
+    </div>
+
+    <p class="intro-hint" id="introHint" data-i18n="introHint">Tap to open</p>
+  </div>
+</div>
 
   <!-- palm defined once, used twice; inline so the theme variables reach it -->
   <svg class="svg-defs" width="0" height="0" aria-hidden="true" focusable="false">
@@ -778,6 +812,7 @@
 </footer>
 
 <script src="./js/i18n.js" defer></script>
+<script src="./js/intro.js" defer></script>
 <script src="./js/main.js" defer></script>
 <script src="./js/crackers.js" defer></script>
 <script src="./js/invitation.js" defer></script>

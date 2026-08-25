@@ -15,6 +15,8 @@ flocks of birds and a violet *toran*.
 
 ## Features
 
+- **Opening envelope** on a guest's first visit — tap the seal and it unfolds
+  into the page; skipped on every visit after, and for reduced-motion
 - Live countdown (celebrations → muhurtham → "Happily married!")
 - **Wedding-day crackers** 🎆 — a fireworks canvas that switches itself on for
   12–13 September 2026 (IST) and stays dormant every other day
@@ -43,7 +45,8 @@ python3 -m http.server 4173
 Then open <http://localhost:4173>.
 
 To see the crackers on any day, add `?crackers=1` to the URL
-(`?crackers=0` forces them off).
+(`?crackers=0` forces them off). `?intro=1` replays the opening envelope,
+`?intro=0` skips it.
 
 ## The invitations
 

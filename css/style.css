@@ -1237,3 +1237,168 @@ body.lb-open { overflow: hidden; }
 @media (max-width: 640px) {
   .lang button { padding: .34rem .6rem; font-size: .72rem; }
 }
+
+/* ————— first-visit envelope ————— */
+[data-intro="skip"] .intro { display: none; }
+/* the page must not scroll behind the overlay */
+[data-intro="show"] body { overflow: hidden; }
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(58vw 46vh at 22% 10%, var(--wash-a), transparent 60%),
+    radial-gradient(58vw 46vh at 78% 90%, var(--wash-b), transparent 60%),
+    linear-gradient(var(--bg-2), var(--bg) 55%);
+  animation: intro-in .5s ease both;
+}
+@keyframes intro-in { from { opacity: 0; } to { opacity: 1; } }
+
+.intro.is-open  { animation: intro-out .85s .95s ease forwards; pointer-events: none; }
+@keyframes intro-out {
+  to { opacity: 0; visibility: hidden; }
+}
+
+.intro-stage { text-align: center; padding-top: clamp(70px, 17vh, 150px); }
+
+/* the envelope: back, card, front pocket, top flap — layered in that order */
+.env {
+  position: relative;
+  width: min(390px, 84vw);
+  aspect-ratio: 3 / 2;
+  margin: 0 auto;
+  perspective: 1100px;
+  cursor: pointer;
+}
+.env-back, .env-front, .env-flap {
+  position: absolute;
+  left: 0;
+  width: 100%;
+}
+.env-back {
+  top: 0; height: 100%;
+  border-radius: 10px;
+  background: linear-gradient(150deg, var(--deco-pale), var(--deco));
+  border: 1px solid var(--accent-soft);
+  box-shadow: 0 30px 70px var(--shadow-lg);
+}
+/* the pocket, drawn as a triangle pointing up so the card looks tucked behind */
+.env-front {
+  bottom: 0; height: 72%;
+  z-index: 3;
+  background: linear-gradient(170deg, var(--deco), var(--deco-2));
+  border-radius: 0 0 10px 10px;
+  border: 1px solid var(--accent-soft);
+  border-top: 1px solid var(--accent-soft);
+}
+.env-flap {
+  top: 0; height: 62%;
+  z-index: 4;
+  transform-origin: top center;
+  background: linear-gradient(190deg, var(--deco-2), var(--deco));
+  border: 1px solid var(--accent-soft);
+  filter: drop-shadow(0 3px 5px var(--shadow-sm));
+  border-bottom: 0;
+  border-radius: 10px 10px 0 0;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transition: transform .8s cubic-bezier(.6,.02,.35,1);
+}
+.env.open .env-flap {
+  transform: rotateX(-172deg);
+  /* drop behind once it is past vertical, or it covers the rising card */
+  transition: transform .8s cubic-bezier(.6,.02,.35,1), z-index 0s .38s;
+  z-index: 1;
+}
+
+.env-card {
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  width: 88%;
+  z-index: 2;
+  transform: translateX(-50%);
+  padding: 1.1rem .9rem 1rem;
+  border-radius: 8px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 26px var(--shadow);
+  transition: transform .85s .34s cubic-bezier(.2,.7,.3,1);
+}
+.env.open .env-card { transform: translateX(-50%) translateY(-104%); }
+
+.ec-om {
+  font-family: var(--tamil);
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+.ec-names {
+  font-family: var(--script);
+  font-size: clamp(1.9rem, 7vw, 2.5rem);
+  line-height: 1.1;
+  color: var(--ink-900);
+  margin: .2rem 0 .1rem;
+}
+[data-lang="ta"] .ec-om { font-size: .78rem; }
+.ec-date {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+[data-lang="ta"] .ec-date { letter-spacing: .02em; text-transform: none; font-size: .76rem; }
+
+/* wax seal, sitting where the flap meets the pocket */
+.env-seal {
+  position: absolute;
+  left: 50%;
+  top: 56%;
+  z-index: 5;
+  width: 62px; height: 62px;
+  margin: -31px 0 0 -31px;
+  border: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 34% 30%, var(--panel), var(--accent-pale));
+  box-shadow: 0 6px 16px var(--shadow-lg), inset 0 0 0 1px var(--accent-soft);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  animation: seal-pulse 2.4s ease-in-out infinite;
+  transition: transform .34s ease, opacity .34s ease;
+}
+.seal-inner svg { width: 30px; height: 18px; display: block; }
+@keyframes seal-pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.07); }
+}
+.env.open .env-seal { animation: none; transform: scale(.4) rotate(-25deg); opacity: 0; }
+
+.intro-hint {
+  margin-top: 1.8rem;
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .26em;
+  text-indent: .26em;
+  text-transform: uppercase;
+  color: var(--accent);
+  animation: hint-bob 2.2s ease-in-out infinite;
+}
+[data-lang="ta"] .intro-hint {
+  font-family: var(--tamil);
+  letter-spacing: .04em; text-indent: 0; text-transform: none;
+  font-size: .95rem;
+}
+@keyframes hint-bob {
+  0%, 100% { opacity: .6; transform: translateY(0); }
+  50%      { opacity: 1;  transform: translateY(-3px); }
+}
+.env.open ~ .intro-hint { opacity: 0; transition: opacity .3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .intro { display: none !important; }
+}
