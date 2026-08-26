@@ -1238,9 +1238,14 @@ body.lb-open { overflow: hidden; }
   .lang button { padding: .34rem .6rem; font-size: .72rem; }
 }
 
-/* ————— first-visit envelope ————— */
+/* ————— first-visit opening ————————————————————————————————————————
+   Four stages, driven by classes that js/intro.js adds in sequence:
+   .arrive → idle → .unseal → .unfold → .zoom
+   The envelope is built as four triangular folds that each swing open on
+   their own edge, so the whole thing flattens out rather than a single flap
+   lifting; the card underneath then scales up and becomes the page.
+———————————————————————————————————————————————————————————————————— */
 [data-intro="skip"] .intro { display: none; }
-/* the page must not scroll behind the overlay */
 [data-intro="show"] body { overflow: hidden; }
 
 .intro {
@@ -1250,143 +1255,213 @@ body.lb-open { overflow: hidden; }
   display: grid;
   place-items: center;
   padding: 24px;
-  background:
-    radial-gradient(58vw 46vh at 22% 10%, var(--wash-a), transparent 60%),
-    radial-gradient(58vw 46vh at 78% 90%, var(--wash-b), transparent 60%),
-    linear-gradient(var(--bg-2), var(--bg) 55%);
-  animation: intro-in .5s ease both;
+  overflow: hidden;
+  background: linear-gradient(var(--bg-2), var(--bg) 60%);
+  animation: intro-fade-in .45s ease both;
 }
-@keyframes intro-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes intro-fade-in { from { opacity: 0; } to { opacity: 1; } }
 
-.intro.is-open  { animation: intro-out .85s .95s ease forwards; pointer-events: none; }
-@keyframes intro-out {
-  to { opacity: 0; visibility: hidden; }
+/* a slow breathing glow behind the envelope */
+.intro-glow {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: min(760px, 150vw); aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, var(--wash-a) 0%, transparent 62%);
+  animation: glow-breathe 5s ease-in-out infinite alternate;
+}
+@keyframes glow-breathe {
+  from { opacity: .55; transform: translate(-50%,-50%) scale(.9); }
+  to   { opacity: 1;   transform: translate(-50%,-50%) scale(1.08); }
 }
 
-.intro-stage { text-align: center; padding-top: clamp(70px, 17vh, 150px); }
+.intro-burst { position: absolute; inset: 0; pointer-events: none; }
+.intro-stage { position: relative; text-align: center; }
 
-/* the envelope: back, card, front pocket, top flap — layered in that order */
+/* ——— the envelope ——— */
 .env {
   position: relative;
-  width: min(390px, 84vw);
+  width: min(380px, 82vw);
   aspect-ratio: 3 / 2;
   margin: 0 auto;
-  perspective: 1100px;
+  transform-style: preserve-3d;
+  perspective: 1300px;
   cursor: pointer;
+  /* flies in and settles */
+  animation: env-arrive 1.05s cubic-bezier(.18,.85,.25,1) both;
 }
-.env-back, .env-front, .env-flap {
-  position: absolute;
-  left: 0;
-  width: 100%;
-}
-.env-back {
-  top: 0; height: 100%;
-  border-radius: 10px;
-  background: linear-gradient(150deg, var(--deco-pale), var(--deco));
-  border: 1px solid var(--accent-soft);
-  box-shadow: 0 30px 70px var(--shadow-lg);
-}
-/* the pocket, drawn as a triangle pointing up so the card looks tucked behind */
-.env-front {
-  bottom: 0; height: 72%;
-  z-index: 3;
-  background: linear-gradient(170deg, var(--deco), var(--deco-2));
-  border-radius: 0 0 10px 10px;
-  border: 1px solid var(--accent-soft);
-  border-top: 1px solid var(--accent-soft);
-}
-.env-flap {
-  top: 0; height: 62%;
-  z-index: 4;
-  transform-origin: top center;
-  background: linear-gradient(190deg, var(--deco-2), var(--deco));
-  border: 1px solid var(--accent-soft);
-  filter: drop-shadow(0 3px 5px var(--shadow-sm));
-  border-bottom: 0;
-  border-radius: 10px 10px 0 0;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  transition: transform .8s cubic-bezier(.6,.02,.35,1);
-}
-.env.open .env-flap {
-  transform: rotateX(-172deg);
-  /* drop behind once it is past vertical, or it covers the rising card */
-  transition: transform .8s cubic-bezier(.6,.02,.35,1), z-index 0s .38s;
-  z-index: 1;
+@keyframes env-arrive {
+  from { transform: translateY(58vh) rotate(-9deg) scale(.72); opacity: 0; }
+  60%  { opacity: 1; }
+  to   { transform: translateY(0) rotate(0) scale(1); opacity: 1; }
 }
 
+/* the paper the folds sit on */
+.env::before {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: 12px;
+  background: linear-gradient(150deg, var(--deco-pale), var(--deco));
+  box-shadow: 0 34px 70px var(--shadow-lg);
+}
+
+.flap {
+  position: absolute;
+  z-index: 3;
+  background: linear-gradient(190deg, var(--deco-2), var(--deco));
+  backface-visibility: hidden;
+  transition: transform 1.05s cubic-bezier(.62,.02,.3,1), opacity .5s .55s ease;
+}
+/* four triangles that together tile the rectangle */
+.flap.ft { top: 0; left: 0; width: 100%; height: 50%;
+           clip-path: polygon(0 0, 100% 0, 50% 100%);
+           transform-origin: top center; }
+.flap.fb { bottom: 0; left: 0; width: 100%; height: 50%;
+           clip-path: polygon(50% 0, 100% 100%, 0 100%);
+           transform-origin: bottom center; }
+.flap.fl { left: 0; top: 0; width: 50%; height: 100%;
+           clip-path: polygon(0 0, 100% 50%, 0 100%);
+           transform-origin: center left;
+           background: linear-gradient(120deg, var(--deco), var(--deco-2)); }
+.flap.fr { right: 0; top: 0; width: 50%; height: 100%;
+           clip-path: polygon(100% 0, 100% 100%, 0 50%);
+           transform-origin: center right;
+           background: linear-gradient(240deg, var(--deco), var(--deco-2)); }
+
+/* the fold creases catch a little light */
+.flap.ft { box-shadow: inset 0 -1px 0 var(--accent-soft); }
+.flap.fb { box-shadow: inset 0  1px 0 var(--accent-soft); }
+
+.env.unfold .flap.ft { transform: rotateX(-179deg); }
+.env.unfold .flap.fb { transform: rotateX(179deg); }
+.env.unfold .flap.fl { transform: rotateY(179deg); }
+.env.unfold .flap.fr { transform: rotateY(-179deg); }
+/* the sides go first, then the top and bottom, so it reads as unfolding */
+.env.unfold .flap.fl,
+.env.unfold .flap.fr { transition-delay: 0s; }
+.env.unfold .flap.ft,
+.env.unfold .flap.fb { transition-delay: .28s; }
+.env.unfold .flap { opacity: 0; }
+
+/* ——— the card inside ——— */
 .env-card {
   position: absolute;
-  left: 50%;
-  bottom: 6%;
-  width: 88%;
+  inset: 8%;
   z-index: 2;
-  transform: translateX(-50%);
-  padding: 1.1rem .9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: .12rem;
+  padding: 1rem .8rem;
   border-radius: 8px;
   background: var(--panel);
   border: 1px solid var(--line);
-  box-shadow: 0 10px 26px var(--shadow);
-  transition: transform .85s .34s cubic-bezier(.2,.7,.3,1);
+  box-shadow: 0 12px 30px var(--shadow);
+  opacity: 0;
+  transform: scale(.92);
+  transition: opacity .5s .5s ease, transform 1s .5s cubic-bezier(.2,.7,.3,1);
 }
-.env.open .env-card { transform: translateX(-50%) translateY(-104%); }
+.env.unfold .env-card { opacity: 1; transform: scale(1); }
+
+/* the card grows past the screen and hands over to the page behind it */
+.intro.zoom .env-card {
+  transition: transform 1.05s cubic-bezier(.5,0,.75,0), opacity .55s .5s ease;
+  transform: scale(9);
+  opacity: 0;
+}
+.intro.zoom .env::before,
+.intro.zoom .intro-hint { opacity: 0; transition: opacity .4s; }
+.intro.zoom { animation: intro-fade-out .9s .45s ease forwards; }
+@keyframes intro-fade-out { to { opacity: 0; visibility: hidden; } }
 
 .ec-om {
   font-family: var(--tamil);
-  font-size: .72rem;
+  font-size: clamp(.62rem, 2.1vw, .74rem);
   font-weight: 600;
   color: var(--accent);
 }
 .ec-names {
   font-family: var(--script);
-  font-size: clamp(1.9rem, 7vw, 2.5rem);
-  line-height: 1.1;
+  font-size: clamp(1.7rem, 6.6vw, 2.3rem);
+  line-height: 1.12;
   color: var(--ink-900);
-  margin: .2rem 0 .1rem;
 }
-[data-lang="ta"] .ec-om { font-size: .78rem; }
 .ec-date {
-  font-size: .68rem;
+  font-size: clamp(.58rem, 2vw, .68rem);
   font-weight: 600;
-  letter-spacing: .14em;
+  letter-spacing: .12em;
   text-transform: uppercase;
   color: var(--ink-500);
 }
-[data-lang="ta"] .ec-date { letter-spacing: .02em; text-transform: none; font-size: .76rem; }
+[data-lang="ta"] .ec-date { letter-spacing: .02em; text-transform: none; }
 
-/* wax seal, sitting where the flap meets the pocket */
-.env-seal {
+/* ——— the wax seal, which cracks in two ——— */
+.seal {
   position: absolute;
-  left: 50%;
-  top: 56%;
-  z-index: 5;
-  width: 62px; height: 62px;
-  margin: -31px 0 0 -31px;
+  left: 50%; top: 50%;
+  z-index: 4;
+  width: 74px; height: 74px;
+  margin: -37px 0 0 -37px;
+  padding: 0;
   border: 0;
-  border-radius: 50%;
-  background: radial-gradient(circle at 34% 30%, var(--panel), var(--accent-pale));
-  box-shadow: 0 6px 16px var(--shadow-lg), inset 0 0 0 1px var(--accent-soft);
+  background: none;
   cursor: pointer;
-  display: grid;
-  place-items: center;
-  animation: seal-pulse 2.4s ease-in-out infinite;
-  transition: transform .34s ease, opacity .34s ease;
+  animation: seal-beat 2.2s ease-in-out infinite;
 }
-.seal-inner svg { width: 30px; height: 18px; display: block; }
-@keyframes seal-pulse {
+@keyframes seal-beat {
   0%, 100% { transform: scale(1); }
-  50%      { transform: scale(1.07); }
+  14%      { transform: scale(1.09); }
+  28%      { transform: scale(1.01); }
+  42%      { transform: scale(1.06); }
 }
-.env.open .env-seal { animation: none; transform: scale(.4) rotate(-25deg); opacity: 0; }
+/* the seal is focused on load so a keyboard can open it; the default ring drew
+   a hard square over the wax, so show one only for actual keyboard focus */
+.seal:focus { outline: none; }
+.seal:focus-visible { outline: 2px dashed var(--accent); outline-offset: 6px; border-radius: 50%; }
 
+.seal-ring {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 var(--accent-soft);
+  animation: seal-ring 2.2s ease-out infinite;
+}
+@keyframes seal-ring {
+  0%   { box-shadow: 0 0 0 0 var(--accent-soft); opacity: .8; }
+  70%  { box-shadow: 0 0 0 22px var(--accent-soft); opacity: 0; }
+  100% { opacity: 0; }
+}
+/* two half-discs that fly apart, each showing the same pair of hearts so the
+   crack looks like it splits the mark down the middle */
+.seal-half {
+  position: absolute;
+  top: 0; height: 100%; width: 50%;
+  overflow: hidden;
+  background: radial-gradient(circle at 40% 32%, var(--panel), var(--accent-pale));
+  box-shadow: inset 0 0 0 1px var(--accent-soft);
+  transition: transform .75s cubic-bezier(.3,-.4,.6,1), opacity .6s .18s ease;
+}
+.seal-half svg { position: absolute; top: 50%; width: 38px; height: 23px; margin-top: -11px; }
+.sh-l { left: 0;  border-radius: 999px 0 0 999px; }
+.sh-r { right: 0; border-radius: 0 999px 999px 0; }
+/* seal is 74px, halves 37px, mark 38px centred: 37 - 19 = 18px from the left */
+.sh-l svg { left: 18px; }
+.sh-r svg { left: -19px; }
+
+.env.unseal .seal { animation: none; pointer-events: none; }
+.env.unseal .seal-ring { animation: none; opacity: 0; }
+.env.unseal .sh-l { transform: translate(-120px, 74px) rotate(-58deg); opacity: 0; }
+.env.unseal .sh-r { transform: translate(120px, 74px) rotate(58deg); opacity: 0; }
+
+/* ——— hint ——— */
 .intro-hint {
-  margin-top: 1.8rem;
+  margin-top: 2rem;
   font-size: .74rem;
   font-weight: 700;
   letter-spacing: .26em;
   text-indent: .26em;
   text-transform: uppercase;
   color: var(--accent);
-  animation: hint-bob 2.2s ease-in-out infinite;
+  animation: hint-bob 2.2s ease-in-out infinite, intro-fade-in .5s .9s both;
 }
 [data-lang="ta"] .intro-hint {
   font-family: var(--tamil);
@@ -1394,10 +1469,26 @@ body.lb-open { overflow: hidden; }
   font-size: .95rem;
 }
 @keyframes hint-bob {
-  0%, 100% { opacity: .6; transform: translateY(0); }
-  50%      { opacity: 1;  transform: translateY(-3px); }
+  0%, 100% { opacity: .62; transform: translateY(0); }
+  50%      { opacity: 1;   transform: translateY(-3px); }
 }
-.env.open ~ .intro-hint { opacity: 0; transition: opacity .3s; }
+.env.unseal ~ .intro-hint { opacity: 0; animation: none; transition: opacity .35s; }
+
+/* petals thrown out when the seal cracks */
+.intro-bit {
+  position: absolute;
+  width: var(--sz, 14px); height: var(--sz, 14px);
+  margin-left: calc(var(--sz, 14px) / -2);
+  margin-top:  calc(var(--sz, 14px) / -2);
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation: intro-bit-fly var(--dur, 1.3s) cubic-bezier(.14,.7,.3,1) forwards;
+}
+@keyframes intro-bit-fly {
+  0%   { transform: translate3d(0,0,0) scale(.3) rotate(0deg); opacity: 0; }
+  12%  { opacity: 1; }
+  100% { transform: translate3d(var(--dx), calc(var(--dy) + var(--fall)), 0) scale(.85) rotate(var(--rot)); opacity: 0; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .intro { display: none !important; }

@@ -15,8 +15,9 @@ flocks of birds and a violet *toran*.
 
 ## Features
 
-- **Opening envelope** on a guest's first visit — tap the seal and it unfolds
-  into the page; skipped on every visit after, and for reduced-motion
+- **Opening envelope** on a guest's first visit — the invitation flies in, the
+  wax seal cracks in two with a scatter of petals, all four folds swing open and
+  the card grows into the page. Once only; skipped for reduced-motion
 - Live countdown (celebrations → muhurtham → "Happily married!")
 - **Wedding-day crackers** 🎆 — a fireworks canvas that switches itself on for
   12–13 September 2026 (IST) and stays dormant every other day
