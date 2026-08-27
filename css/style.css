@@ -1579,14 +1579,6 @@ body.lb-open { overflow: hidden; }
 .wf-note.is-busy { color: var(--ink-500); font-style: italic; }
 .wf-note a { color: var(--accent); }
 
-/* While a guest is typing, the phone keyboard pushes the form up so the send
-   button and the two floating corner controls end up in the same strip of
-   screen. Get the controls out of the way until they are done. */
-/* the transition lives on the elements themselves, not inside the conditional
-   block, so they fade out and back in rather than only out */
-.lang, .appear { transition: opacity .22s ease; }
-[data-typing="1"] .lang,
-[data-typing="1"] .appear { opacity: 0; pointer-events: none; }
 
 /* ————— the joining dropdown —————
    A native <select> hands its open list to the operating system and <option>
