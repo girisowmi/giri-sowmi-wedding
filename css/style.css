@@ -1430,27 +1430,31 @@ body.lb-open { overflow: hidden; }
   70%  { box-shadow: 0 0 0 22px var(--accent-soft); opacity: 0; }
   100% { opacity: 0; }
 }
-/* two half-discs that fly apart, each showing the same pair of hearts so the
-   crack looks like it splits the mark down the middle */
-.seal-half {
+/* One whole disc that is lifted away intact. It used to be two half-discs that
+   flew apart, which split the 💙💜 mark down the middle and read as two broken
+   hearts — precisely the wrong image for a wedding. Nothing breaks now: the
+   seal presses in, then peels up and away with the mark still whole. */
+.seal-face {
   position: absolute;
-  top: 0; height: 100%; width: 50%;
-  overflow: hidden;
-  background: radial-gradient(circle at 40% 32%, var(--panel), var(--accent-pale));
-  box-shadow: inset 0 0 0 1px var(--accent-soft);
-  transition: transform .75s cubic-bezier(.3,-.4,.6,1), opacity .6s .18s ease;
+  inset: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 38% 30%, var(--panel), var(--accent-pale));
+  box-shadow: inset 0 0 0 1px var(--accent-soft), 0 5px 14px var(--shadow);
+  transform-origin: 50% 85%;
 }
-.seal-half svg { position: absolute; top: 50%; width: 38px; height: 23px; margin-top: -11px; }
-.sh-l { left: 0;  border-radius: 999px 0 0 999px; }
-.sh-r { right: 0; border-radius: 0 999px 999px 0; }
-/* seal is 74px, halves 37px, mark 38px centred: 37 - 19 = 18px from the left */
-.sh-l svg { left: 18px; }
-.sh-r svg { left: -19px; }
+.seal-mark { width: 38px; height: 23px; display: block; }
 
 .env.unseal .seal { animation: none; pointer-events: none; }
 .env.unseal .seal-ring { animation: none; opacity: 0; }
-.env.unseal .sh-l { transform: translate(-120px, 74px) rotate(-58deg); opacity: 0; }
-.env.unseal .sh-r { transform: translate(120px, 74px) rotate(58deg); opacity: 0; }
+.env.unseal .seal-face { animation: seal-peel .95s cubic-bezier(.3,.55,.28,1) forwards; }
+@keyframes seal-peel {
+  0%   { transform: scale(1) rotate(0deg); opacity: 1; }
+  14%  { transform: scale(.88) rotate(0deg); opacity: 1; }              /* pressed */
+  38%  { transform: translate3d(6px, -16px, 0) rotate(9deg) scale(1.02); opacity: 1; }
+  100% { transform: translate3d(74px, -118px, 0) rotate(38deg) scale(.46); opacity: 0; }
+}
 
 /* ——— hint ——— */
 .intro-hint {

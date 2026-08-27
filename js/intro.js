@@ -123,6 +123,10 @@
     }
   });
 
-  seal.focus({ preventScroll: true });
+  /* deliberately not focused on load: some browsers treat a programmatic
+     focus as keyboard focus and painted a dashed ring that stayed behind
+     after the seal had lifted away. Keyboard access is unaffected — the
+     document keydown handler above opens on Enter, Space or Escape, and
+     Tab still reaches the seal, which then shows a proper ring. */
   window.GSIntro = { open: open, localiseDate: localiseDate };
 })();
