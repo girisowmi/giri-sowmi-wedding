@@ -24,6 +24,7 @@ flocks of birds and a violet *toran*.
 - **View and download both invitations** — nothing is shown until a guest taps
   View, which opens a swipeable 5-page lightbox; both are downloadable
 - **Spotify playlist** (♾️💙💜) — every track listed, click any one to play
+- **Wishes form** that writes straight into a Google Sheet (see below)
 - **Contact card** with tap-to-call and WhatsApp links
 - **English / Tamil**, chosen by the guest and remembered — toggle at bottom-left
 - **3 themes and 3 font pairings**, chosen by the guest and remembered
@@ -85,6 +86,55 @@ Albums, single tracks and artists work too. Until it is set, the section shows
 a placeholder. Note that Spotify's embed plays **full songs only for listeners
 signed in to Spotify** — everyone else hears a 30-second preview of each track.
 That is Spotify's rule for embeds and cannot be worked around.
+
+## Wishes → Google Sheet
+
+The form posts to a Google Apps Script web app bound to your own sheet. No
+server, no API key in the page, and the sheet stays private to you.
+
+**1. Make the sheet.** New Google Sheet, name it anything.
+
+**2. Add the script.** In that sheet: **Extensions → Apps Script**. Delete the
+placeholder and paste all of [`apps-script/Code.gs`](apps-script/Code.gs). Save.
+
+**3. Deploy it.** **Deploy → New deployment → ⚙ → Web app**, then:
+
+| Field | Set it to |
+|---|---|
+| Description | anything, e.g. `wishes` |
+| Execute as | **Me** |
+| Who has access | **Anyone** |
+
+Click **Deploy**, approve the permission prompt (it is your own script writing
+to your own sheet), and copy the **Web app URL** ending in `/exec`.
+
+> **"Who has access: Anyone" is required** — guests are not signed in to Google,
+> so anything stricter rejects every submission. It lets anyone *post* a row; it
+> does not let anyone read the sheet.
+
+**4. Point the site at it.** Paste the URL into `WISHES_ENDPOINT` at the top of
+`js/wishes.js`, then push:
+
+```js
+var WISHES_ENDPOINT = 'https://script.google.com/macros/s/AKfycb..../exec';
+```
+
+Rows arrive as `Received | Name | Wish | Joining | Language`, newest last.
+
+**If you ever change the script, deploy a *new version*** — editing the code
+alone does not update the live web app.
+
+### Why the response is never read
+
+Apps Script redirects `/exec` to a `googleusercontent.com` host and that
+redirect drops the CORS headers, so a browser can never read the reply. The form
+posts with `mode: 'no-cors'` and treats a resolved request as success; a genuine
+network failure still rejects and shows the guest a pre-filled WhatsApp link so
+their message is not lost. `URLSearchParams` keeps it a simple request, so there
+is no preflight to be blocked.
+
+A hidden honeypot field is included — bots fill it, guests never see it, and the
+script drops those rows.
 
 ## Deploy to GitHub Pages
 

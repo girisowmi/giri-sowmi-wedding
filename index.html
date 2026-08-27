@@ -726,6 +726,56 @@
     </div>
   </section>
 
+
+  <div class="sep" aria-hidden="true">
+    <span class="line"></span>
+    <svg viewBox="0 0 24 22" width="18" height="17" focusable="false">
+      <path d="M12 20 C6 15 2 11.5 2 7.5 C2 4.4 4.4 2 7.2 2 C9.2 2 11 3.2 12 5 C13 3.2 14.8 2 16.8 2 C19.6 2 22 4.4 22 7.5 C22 11.5 18 15 12 20 Z" fill="none" stroke="var(--accent-2)" stroke-width="1.6"/>
+    </svg>
+    <span class="line"></span>
+  </div>
+
+  <section class="wishes" id="wishes">
+    <div class="wrap">
+      <h2 class="script-h reveal" data-i18n="wishesH">Leave us your wishes</h2>
+      <p class="wishes-sub reveal" data-i18n="wishesSub">A line from you means more than any gift. We'll read every one.</p>
+
+      <form class="wish-form reveal" id="wishForm" novalidate>
+        <div class="wf-row">
+          <label class="wf-label" for="wfName" data-i18n="wfName">Your name</label>
+          <input class="wf-input" id="wfName" name="name" type="text" maxlength="120"
+                 autocomplete="name" required>
+        </div>
+
+        <div class="wf-row">
+          <label class="wf-label" for="wfWish" data-i18n="wfWish">Your wishes</label>
+          <textarea class="wf-input wf-area" id="wfWish" name="wish" rows="4"
+                    maxlength="2000" required></textarea>
+        </div>
+
+        <div class="wf-row">
+          <label class="wf-label" for="wfJoin" data-i18n="wfJoin">Will you be joining us?</label>
+          <select class="wf-input wf-select" id="wfJoin" name="joining">
+            <option value="" data-i18n="wfJoinBlank">Not sure yet</option>
+            <option value="both" data-i18n="wfJoinBoth">Both days</option>
+            <option value="reception" data-i18n="wfJoinRec">Reception only</option>
+            <option value="muhurtham" data-i18n="wfJoinMuh">Muhurtham only</option>
+            <option value="cannot" data-i18n="wfJoinNo">Sending love from afar</option>
+          </select>
+        </div>
+
+        <!-- honeypot: hidden from guests, so anything in it came from a bot -->
+        <div class="wf-trap" aria-hidden="true">
+          <label for="wfTrap">Leave this empty</label>
+          <input id="wfTrap" name="trap" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <button class="btn solid wf-send" id="wfSend" type="submit" data-i18n="wfSend">Send our way</button>
+        <p class="wf-note" id="wfNote" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
   <div class="sep" aria-hidden="true">
     <span class="line"></span>
     <svg viewBox="0 0 24 22" width="18" height="17" focusable="false">
@@ -822,6 +872,7 @@
 <script src="./js/crackers.js" defer></script>
 <script src="./js/invitation.js" defer></script>
 <script src="./js/appearance.js" defer></script>
+<script src="./js/wishes.js" defer></script>
 <script src="./js/burst.js" defer></script>
 </body>
 </html>

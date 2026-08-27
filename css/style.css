@@ -1493,3 +1493,107 @@ body.lb-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .intro { display: none !important; }
 }
+
+/* ————— wishes form ————— */
+.wishes {
+  background:
+    radial-gradient(58% 52% at 50% 0%, var(--wash-c), transparent 66%),
+    linear-gradient(var(--bg), var(--bg-2));
+}
+.wishes-sub {
+  max-width: 42ch;
+  margin: -1.2rem auto 2.2rem;
+  font-style: italic;
+  line-height: 1.75;
+}
+.wish-form {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 1.9rem clamp(1.1rem, 4vw, 2rem) 1.7rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--panel);
+  box-shadow: 0 14px 36px var(--shadow);
+  text-align: left;
+}
+.wf-row { margin-bottom: 1.1rem; }
+.wf-label {
+  display: block;
+  margin-bottom: .38rem;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+[data-lang="ta"] .wf-label {
+  font-family: var(--tamil);
+  letter-spacing: .02em; text-transform: none; font-size: .84rem;
+}
+.wf-input {
+  width: 100%;
+  padding: .72rem .85rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg-soft);
+  color: var(--ink-900);
+  font-family: var(--serif);
+  font-size: 1rem;
+  line-height: 1.5;
+  transition: border-color .18s ease, box-shadow .18s ease;
+}
+.wf-input::placeholder { color: var(--muted); }
+.wf-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--ghost-hover);
+}
+.wf-area { resize: vertical; min-height: 108px; }
+.wf-select { appearance: none; cursor: pointer;
+  /* the caret is drawn here rather than left to the OS, which renders it in a
+     colour we do not control and that vanishes on the dark theme */
+  background-image: linear-gradient(45deg, transparent 49%, var(--ink-500) 50%),
+                    linear-gradient(-45deg, transparent 49%, var(--ink-500) 50%);
+  background-size: 6px 6px, 6px 6px;
+  background-position: calc(100% - 18px) 52%, calc(100% - 12px) 52%;
+  background-repeat: no-repeat;
+  padding-right: 2.4rem;
+}
+/* off-screen rather than display:none — a bot reading the DOM still finds it,
+   but no guest and no screen reader is offered it */
+.wf-trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+/* deliberately not full width: the language toggle and theme button float in
+   the bottom corners, and a full-width primary action runs straight underneath
+   them whenever it lands near the foot of the viewport */
+.wf-send {
+  display: flex;
+  width: auto;
+  min-width: 210px;
+  justify-content: center;
+  margin: .5rem auto 0;
+  cursor: pointer;
+}
+.wf-send:disabled { opacity: .6; cursor: default; transform: none; }
+.wish-form.is-sent .wf-send { display: none; }
+
+.wf-note {
+  margin-top: .9rem;
+  font-size: .9rem;
+  line-height: 1.6;
+  min-height: 1.2em;
+}
+.wf-note:empty { margin-top: 0; min-height: 0; }
+.wf-note.is-good { color: var(--accent); font-style: italic; }
+.wf-note.is-bad  { color: var(--ink-700); }
+.wf-note.is-busy { color: var(--ink-500); font-style: italic; }
+.wf-note a { color: var(--accent); }
+
+/* While a guest is typing, the phone keyboard pushes the form up so the send
+   button and the two floating corner controls end up in the same strip of
+   screen. Get the controls out of the way until they are done. */
+/* the transition lives on the elements themselves, not inside the conditional
+   block, so they fade out and back in rather than only out */
+.lang, .appear { transition: opacity .22s ease; }
+[data-typing="1"] .lang,
+[data-typing="1"] .appear { opacity: 0; pointer-events: none; }
