@@ -1549,16 +1549,7 @@ body.lb-open { overflow: hidden; }
   box-shadow: 0 0 0 3px var(--ghost-hover);
 }
 .wf-area { resize: vertical; min-height: 108px; }
-.wf-select { appearance: none; cursor: pointer;
-  /* the caret is drawn here rather than left to the OS, which renders it in a
-     colour we do not control and that vanishes on the dark theme */
-  background-image: linear-gradient(45deg, transparent 49%, var(--ink-500) 50%),
-                    linear-gradient(-45deg, transparent 49%, var(--ink-500) 50%);
-  background-size: 6px 6px, 6px 6px;
-  background-position: calc(100% - 18px) 52%, calc(100% - 12px) 52%;
-  background-repeat: no-repeat;
-  padding-right: 2.4rem;
-}
+.wf-select { appearance: none; cursor: pointer; padding-right: 2.4rem; }
 /* off-screen rather than display:none — a bot reading the DOM still finds it,
    but no guest and no screen reader is offered it */
 .wf-trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
@@ -1596,3 +1587,74 @@ body.lb-open { overflow: hidden; }
 .lang, .appear { transition: opacity .22s ease; }
 [data-typing="1"] .lang,
 [data-typing="1"] .appear { opacity: 0; pointer-events: none; }
+
+/* ————— the joining dropdown —————
+   A native <select> hands its open list to the operating system and <option>
+   takes no CSS anywhere, so the list is rebuilt as a real listbox. The native
+   select stays underneath as the value and the no-JS fallback. */
+.dd { position: relative; }
+.dd-native {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  left: 0; top: 0;
+}
+.dd-btn {
+  position: relative;
+  display: block;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  padding-right: 2.6rem;
+}
+/* the caret, drawn rather than left to the OS — which picks a colour we do not
+   control and loses it entirely against the dark theme */
+.dd-btn::after {
+  content: '';
+  position: absolute;
+  right: 1rem; top: 50%;
+  width: 8px; height: 8px;
+  border-right: 2px solid var(--ink-500);
+  border-bottom: 2px solid var(--ink-500);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform .2s ease;
+}
+.dd.is-open .dd-btn::after { transform: translateY(-20%) rotate(225deg); }
+.dd.is-open .dd-btn { border-color: var(--accent); box-shadow: 0 0 0 3px var(--ghost-hover); }
+
+.dd-list {
+  position: absolute;
+  left: 0; right: 0;
+  top: calc(100% + 6px);
+  z-index: 20;
+  margin: 0;
+  padding: .35rem;
+  list-style: none;
+  max-height: 260px;
+  overflow-y: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  box-shadow: 0 16px 40px var(--shadow-lg);
+  animation: dd-in .16s ease both;
+}
+.dd-list[hidden] { display: none; }
+@keyframes dd-in {
+  from { opacity: 0; transform: translateY(-5px); }
+  to   { opacity: 1; transform: none; }
+}
+.dd-opt {
+  padding: .62rem .8rem;
+  border-radius: 8px;
+  font-family: var(--serif);
+  font-size: 1rem;
+  color: var(--ink-900);
+  cursor: pointer;
+}
+[data-lang="ta"] .dd-opt,
+[data-lang="ta"] .dd-btn { font-family: var(--tamil); }
+.dd-opt:hover, .dd-opt.cursor { background: var(--ghost-hover); }
+.dd-opt.on { color: var(--accent); font-weight: 600; }
+.dd-opt.on::after { content: ' ✓'; }
