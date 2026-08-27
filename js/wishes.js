@@ -9,7 +9,7 @@
  *  silently swallowing them.
  * ─────────────────────────────────────────────────────────────────────────
  */
-var WISHES_ENDPOINT = '';
+var WISHES_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyFV0Fx_NhTlYKztHnSKeEcRxsg-cBdyGoZmRAYSeoFSNIY5d5g4Rc0hKlvdlM_fzqG/exec';
 
 /* where guests are sent if the form cannot reach the sheet */
 var WISHES_FALLBACK_WA = 'https://wa.me/919677948151';
