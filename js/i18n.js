@@ -71,7 +71,7 @@ var GS_STRINGS = {
     fineprint:   '12 &amp; 13 September 2026 · Erode, Tamil Nadu',
 
     wishesH:     'Leave us your wishes',
-    wishesSub:   "A line from you means more than any gift. We'll read every one.",
+    wishesSub:   "A line from you means more than anything. We'll read every one.",
     wfName:      'Your name',
     wfWish:      'Your wishes',
     wfJoin:      'Will you be joining us?',
@@ -163,7 +163,7 @@ var GS_STRINGS = {
     fineprint:   '12 &amp; 13 செப்டம்பர் 2026 · ஈரோடு, தமிழ்நாடு',
 
     wishesH:     'உங்கள் வாழ்த்துகளைப் பகிருங்கள்',
-    wishesSub:   'உங்கள் ஒரு வரி வாழ்த்து எந்தப் பரிசையும் விட பெரிது. ஒவ்வொன்றையும் படிப்போம்.',
+    wishesSub:   'உங்கள் ஒரு வரி வாழ்த்து எதையும் விட பெரிது. ஒவ்வொன்றையும் படிப்போம்.',
     wfName:      'உங்கள் பெயர்',
     wfWish:      'உங்கள் வாழ்த்துகள்',
     wfJoin:      'எங்களுடன் இணைகிறீர்களா?',
