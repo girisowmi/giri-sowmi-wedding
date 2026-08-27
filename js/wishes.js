@@ -39,17 +39,29 @@ var WISHES_FALLBACK_WA = 'https://wa.me/919677948151';
            '" target="_blank" rel="noopener">' + t('wfWhatsApp', 'send it on WhatsApp') + '</a>';
   }
 
-  /* the corner controls step aside while the form has focus — on a phone the
-     keyboard lifts the send button into the same strip they occupy */
+  /* The corner controls step aside only while an on-screen keyboard is up, since
+     that is what lifts the send button into the strip they occupy. Reacting to
+     any focus in the form was wrong: clicking the dropdown focuses a button,
+     raises no keyboard, and made both controls vanish for no reason. */
   var root = document.documentElement;
-  form.addEventListener('focusin',  function () { root.setAttribute('data-typing', '1'); });
+
+  function raisesKeyboard(el) {
+    if (!el) return false;
+    if (el.tagName === 'TEXTAREA') return true;
+    return el.tagName === 'INPUT' &&
+           /^(text|email|tel|search|url|number|password)$/.test(el.type);
+  }
+
+  form.addEventListener('focusin', function (e) {
+    if (raisesKeyboard(e.target)) root.setAttribute('data-typing', '1');
+  });
   form.addEventListener('input', function () {
     if (note.classList.contains('is-good')) { note.textContent = ''; note.className = 'wf-note'; }
   });
   form.addEventListener('focusout', function () {
-    // a blur that moves to another field inside the form should not flicker them
+    // moving between two text fields should not flicker the controls back
     setTimeout(function () {
-      if (!form.contains(document.activeElement)) root.removeAttribute('data-typing');
+      if (!raisesKeyboard(document.activeElement)) root.removeAttribute('data-typing');
     }, 60);
   });
 
