@@ -116,10 +116,20 @@ var WISHES_FALLBACK_WA = 'https://wa.me/919677948151';
       open = true;
       wrap.classList.add('is-open');
       btn.setAttribute('aria-expanded', 'true');
+
+      // open upward if the list would run off the bottom of the screen
+      wrap.classList.remove('drop-up');
+      var b = btn.getBoundingClientRect();
+      var need = list.offsetHeight + 12;
+      if (b.bottom + need > window.innerHeight && b.top > need) {
+        wrap.classList.add('drop-up');
+      }
+
       mark(nativeSel.selectedIndex);
     }
     function hide() {
       list.hidden = true;
+      wrap.classList.remove('drop-up');
       open = false;
       wrap.classList.remove('is-open');
       btn.setAttribute('aria-expanded', 'false');
