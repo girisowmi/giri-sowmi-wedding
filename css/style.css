@@ -1575,7 +1575,6 @@ body.lb-open { overflow: hidden; }
   cursor: pointer;
 }
 .wf-send:disabled { opacity: .6; cursor: default; transform: none; }
-.wish-form.is-sent .wf-send { display: none; }
 
 .wf-note {
   margin-top: .9rem;

@@ -43,6 +43,9 @@ var WISHES_FALLBACK_WA = 'https://wa.me/919677948151';
      keyboard lifts the send button into the same strip they occupy */
   var root = document.documentElement;
   form.addEventListener('focusin',  function () { root.setAttribute('data-typing', '1'); });
+  form.addEventListener('input', function () {
+    if (note.classList.contains('is-good')) { note.textContent = ''; note.className = 'wf-note'; }
+  });
   form.addEventListener('focusout', function () {
     // a blur that moves to another field inside the form should not flicker them
     setTimeout(function () {
@@ -87,7 +90,11 @@ var WISHES_FALLBACK_WA = 'https://wa.me/919677948151';
     fetch(WISHES_ENDPOINT, { method: 'POST', mode: 'no-cors', body: body })
       .then(function () {
         form.classList.remove('is-sending');
-        form.classList.add('is-sent');
+        send.disabled = false;
+        // relabel via the data key, not textContent, so switching language
+        // afterwards keeps the new wording instead of reverting
+        send.dataset.i18n = 'wfSendAnother';
+        send.textContent = t('wfSendAnother', 'Send another');
         say('good', 'wfThanks', 'Thank you &mdash; that means the world to us.');
         form.reset();
       })
